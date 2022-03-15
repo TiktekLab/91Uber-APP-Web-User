@@ -1,0 +1,72 @@
+.bodyMain {
+	overflow: auto;
+	background-color: #f9f9f9;
+	.evaluate {
+		padding-top: 30rpx;
+		padding-bottom: 80rpx;
+		background-color: #fff;
+		margin-bottom: 200rpx;
+		.pageTitle {
+			// 页面标题
+			font-size: 30rpx;
+			color: #000;
+			font-family: PingFangSCBold;
+		}
+		.evaluateList {
+			margin-top: 30rpx;
+			.itemContent {
+				flex-wrap: wrap;
+				margin-top: 15rpx;
+				.tag {
+					padding: 15rpx 10rpx;
+					text {
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						height: 60rpx;
+						min-width: 140rpx;
+						padding: 10rpx 30rpx;
+						max-width: calc(100vw - 140rpx);
+						transition: all 0.15s;
+						font-size: 30rpx;
+						font-family: PingFangSCMedium;
+						background-color: #f9f9f9;
+					}
+					&.active {
+						text {
+							background-color: $pink;
+							color: $white;
+							transition: all 0.15s;
+						}
+					}
+				}
+			}
+			.textareaBox{
+				border: 2rpx solid #eee;
+				height: auto;
+				margin-top: 15rpx;
+				padding: 30rpx;
+			}
+			
+		}
+	}
+	.footerBtn {
+		// 底部按钮
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: #fff;
+		border-top: 2rpx solid #eee;
+		padding-top: 30rpx;
+		padding-bottom: constant(safe-area-inset-bottom);
+		padding-bottom: env(safe-area-inset-bottom);
+		&.isAndroid {
+			padding-bottom: 50rpx;
+		}
+		.btn {
+			height: 88rpx;
+			width: 300rpx;
+			margin: 0;
+		}
+	}
+}

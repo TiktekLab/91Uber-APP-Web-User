@@ -1,0 +1,72 @@
+.bodyMain{
+	// overflow: auto;
+	.evaluateList{
+		.title{
+			margin: 20rpx 0;
+			.stars{
+				color: #FFD60A;
+				font-size: 36rpx;
+				margin-right: 10rpx;
+			}
+			.text{
+				font-size: 36rpx;
+				color: #000;
+				font-family: PingFangSCBold;
+			}
+		}
+		.evaluateItem{
+			flex-wrap: wrap;
+			
+			.item{
+				height: 64rpx;
+				line-height: 64rpx;
+				border-radius: 64rpx;
+				background-color: rgba(255, 54, 162, 0.1);
+				color: $pink;
+				padding: 0 30rpx;
+				font-size: 26rpx;
+				margin: 0 30rpx 30rpx 0;
+				white-space: nowrap;
+			}
+		}
+		.listBox{
+			.listItem{
+				padding: 30rpx 0;
+				border-top: 2rpx solid #eee;
+				.userInfo{
+					margin-bottom: 30rpx;
+					.left{
+						flex: 0 0 82rpx;
+						width: 82rpx;
+						height: 82rpx;
+						border-radius: 50%;
+						overflow: hidden;
+						background-color: #efece8;
+						margin-right: 30rpx;
+						.icon {
+							font-size: 65rpx;
+							width: 100%;
+							height: 100%;
+							color: #404a6a;
+							align-items: flex-end;
+						}
+					}
+					.right{
+						flex: 1;
+						.name{
+							font-family: PingFangSCBold;
+							font-size: 30rpx;
+							color: #000;
+						}
+						.time{
+							color: #6B7582;
+						}
+					}
+				}
+				.centent{
+					
+				}
+			}
+		}
+	}
+}

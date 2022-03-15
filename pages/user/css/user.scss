@@ -1,0 +1,124 @@
+.bodyMain {
+	background-color: #f9f9f9;
+	overflow: auto;
+
+	// 用户信息
+	.userInfo {
+		padding: 30rpx 60rpx 30rpx 30rpx;
+
+		background-color: #fff;
+		margin-top: 30rpx;
+		.avatar {
+			width: 130rpx;
+			flex: 0 0 130rpx;
+			height: 130rpx;
+			border-radius: 50%;
+			overflow: hidden;
+			background-color: #efece8;
+			margin: 20rpx 0;
+			.icon {
+				font-size: 110rpx;
+				width: 100%;
+				height: 100%;
+				color: #404a6a;
+				align-items: flex-end;
+			}
+		}
+		.info {
+			margin-left: 20rpx;
+			height: 130rpx;
+			flex: 1;
+			.left {
+				height: 100%;
+				justify-content: space-around;
+				flex-direction: column;
+				.name {
+					font-size: 36rpx;
+					font-family: PingFangSCBold;
+					-webkit-line-clamp: 1;
+					overflow: hidden;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+				}
+				.rate {
+					margin-right: 20rpx;
+					.icon {
+						color: #ffd60a;
+						font-size: 30rpx;
+						margin-right: 10rpx;
+					}
+				}
+				.count {
+					height: 64rpx;
+					border-radius: 64rpx;
+					background-color: rgba(255, 54, 162, 0.1);
+					color: $pink;
+					padding: 0 20rpx;
+					line-height: 64rpx;
+					font-family: PingFangSCBold;
+					font-size: 26rpx;
+				}
+			}
+		}
+	}
+	.balance {
+		// 我的余额
+		background-color: $pink;
+		height: 140rpx;
+		margin: 30rpx;
+		padding: 30rpx;
+		text {
+			color: #fff;
+			font-size: 30rpx;
+			&.Recharge {
+				margin-right: 30rpx;
+			}
+			&.strong {
+				font-family: PingFangSCBold;
+				font-size: 36rpx;
+			}
+		}
+	}
+	// 下面的列表
+	.itemBox {
+		background-color: #fff;
+		.item {
+			padding: 30rpx 60rpx 30rpx 30rpx;
+			border-bottom: 2rpx solid #f5f5f5;
+			height: 120rpx;
+			&:last-child {
+				border-bottom: none;
+			}
+			.left {
+				text {
+					font-size: 30rpx;
+					color: #000;
+					&.icon {
+						margin-right: 30rpx;
+						font-size: 36rpx;
+					}
+					&.strong {
+						font-family: PingFangSCBold;
+						margin-left: 10rpx;
+					}
+				}
+				.icon {
+					font-size: 36rpx;
+				}
+			}
+			.right {
+				text {
+					font-size: 20rpx;
+					color: #7e787e;
+				}
+				.u-icon {
+					margin-left: 20rpx;
+					color: #7e787e;
+				}
+				.rightText {
+					font-size: 24rpx;
+				}
+			}
+		}
+	}
+}

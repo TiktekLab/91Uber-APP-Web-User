@@ -1,0 +1,91 @@
+.bodyMain {
+	overflow: auto;
+	.addForm {
+		// 外卖表单
+		padding: 30rpx;
+		.form {
+			.input {
+				height: 70rpx;
+				border-radius: 10rpx;
+				border: 2rpx solid #eee;
+				padding-left: 10rpx;
+				width: 100%;
+			}
+			
+			/deep/ .u-input {
+				border-radius: 10rpx;
+				border: 2rpx solid #eee;
+				padding-left: 10rpx !important;
+			}
+		}
+	}
+	.pageTitle {
+		// 页面标题
+		font-size: 30rpx;
+		color: #000;
+		font-family: PingFangSCBold;
+	}
+	.bookingDetails {
+		padding-bottom: 170rpx; // 底部按钮高度
+
+		.itemList {
+			border-bottom: 2rpx solid #eee;
+			padding: 30rpx 0 20rpx;
+			&:last-child {
+				border-bottom: none;
+			}
+			.tips{
+				color: #A4A0A0;
+				font-size: 24rpx;
+			}
+			.centent {
+				flex-direction: column;
+				margin-top: 20rpx;
+				text {
+					font-size: 30rpx;
+					color: #000000;
+					margin: 10rpx 0;
+				}
+			}
+		}
+	}
+	.footerBtn {
+		// 底部按钮
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: #fff;
+		justify-content: space-between;
+		align-items: flex-start;
+		border-top: 2rpx solid #eee;
+		padding-top: 30rpx;
+		padding-bottom: constant(safe-area-inset-bottom);
+		padding-bottom: env(safe-area-inset-bottom);
+		&.isAndroid{
+			padding-bottom: 50rpx;
+		}
+		.left {
+			.allPrice {
+				width: 100rpx;
+				font-size: 30rpx;
+			}
+			.money {
+				font-size: 36rpx;
+				font-family: PingFangSCBold;
+			}
+			.gray {
+				font-size: 30rpx;
+				color: #a4a0a0;
+				line-height: 1;
+				text-decoration: line-through;
+			}
+		}
+		.right {
+			.confirm {
+				height: 88rpx;
+				width: 300rpx;
+			}
+		}
+	}
+}

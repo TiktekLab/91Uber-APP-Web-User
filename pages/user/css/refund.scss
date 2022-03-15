@@ -1,0 +1,31 @@
+.bodyMain {
+	background-color: #f9f9f9;
+	overflow: auto;
+	.main {
+		padding-top: 30rpx;
+		padding-bottom: 30rpx;
+		background-color: #fff;
+		.form {						
+			/deep/.u-form-item__message {
+				text-align: right;
+			}
+		}
+
+		.info {
+			margin-top: 40rpx;
+			color: $font-color-gray;
+			font-size: $font-size-base;
+			.u-icon {
+				margin-right: 20rpx;
+			}
+		}
+	}
+}
+.PreciseSearch {
+	margin: 0;
+	padding: 30rpx 30rpx 50rpx;
+	border-top: 2rpx solid #eee;
+	.searchBtn {
+		height: 100rpx;
+	}
+}

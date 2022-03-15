@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+			content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/uni.webview.1.5.2.js">
+		</script>
+		<script src="https://js.stripe.com/v3/"></script>
+		<title></title>
+	</head>
+	<body>
+
+	</body>
+	<script>
+		let flag = false;
+		stripe = Stripe(getQueryVariable("publishableKey"));
+		stripe.handleCardAction(getQueryVariable("clientSecret")).then(handleStripeJsResult);
+		document.addEventListener('UniAppJSBridgeReady', function() {
+			flag = true;
+		});
+
+		// 返回验证结果
+		function handleStripeJsResult(result) {
+			uni.postMessage({
+				data: {
+					code: 1,
+					mes: '支付结果',
+					data: {
+						...result
+					}
+				}
+			})
+		}
+
+		window.onload = function() {
+			let inv = setInterval(() => {
+				if (flag) {
+					uni.postMessage({
+						data: {
+							code: 0,
+							mes: '页面已加载',
+							data: {}
+						}
+					});
+					clearInterval(inv);
+				}
+			}, 500);
+		};
+	</script>
+</html>

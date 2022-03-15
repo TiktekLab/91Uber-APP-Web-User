@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>Google Map</title>
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+		<script src="js/common.js"></script>
+		<script src="js/uni.webview.1.5.2.js"></script>
+		<style type="text/css">
+			#map {
+				height: 100%;
+				position: relative;
+			}
+
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				position: relative;
+			}
+
+			/* 自定义弹框样式 */
+
+
+			.content {
+				width: 100%;
+				max-width: 750px;
+				margin: 0 auto;
+				background: #fff;
+			}
+
+			.content .image {
+				height: 100px;
+				width: 100%;
+				border-radius: 5px;
+				overflow: hidden;
+				background: url(../../static/image/avatar2.jpg) no-repeat center;
+				background-size: cover !important;
+			}
+
+
+			.info {
+				width: 100%;
+			}
+
+			.info p {
+				font-size: 12px;
+				margin: 10px 0;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				align-items: center;
+				line-height: 1;
+			}
+
+			.info p span {
+				display: inline-block;
+				margin: 0 3px;
+			}
+
+			.info p.name {
+				font-size: 18px;
+			}
+
+			/* 我的位置 */
+			#delBtn {
+				z-index: 100;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: #fff;
+				border: 0px;
+				border-radius: 2px;
+				box-shadow: 0 1px 4px -1px rgba(0, 0, 0, .3);
+				margin: 0px;
+				padding: 0px;
+				text-transform: none;
+				position: absolute;
+				cursor: pointer;
+				user-select: none;
+				overflow: hidden;
+				width: 40px;
+				height: 40px;
+				bottom: 10px;
+				right: 10px;
+			}
+
+
+
+			#delBtn .btnIcon {
+				width: 18px;
+				height: 18px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="map"></div>
+	</body>
+</html>
+<script>
+	let map, infoWindow;
+	const googleKey = getQueryVariable("key");
+	const address = JSON.parse(getQuery('address'));
+	let data = [];
+
+	var script = document.createElement('script');
+	script.src = `https://maps.googleapis.com/maps/api/js?key=${googleKey}&callback=initMap&v=weekly`;
+	script.async = true;
+	document.head.appendChild(script);
+
+	window.initMap = function() {
+		const uluru = { // 我的当前位置
+			lat: Number(address.latitude),     //-37.7994587
+			lng: Number(address.longitude),    //144.9624803
+		};
+		map = new google.maps.Map(document.getElementById("map"), { // 创建地图
+			zoom: 13,
+			center: uluru,
+			zoomControl: true, // 显示 + 和 - 按钮
+			mapTypeControl: false, // 显示地形街景
+			scaleControl: true, // 显示比例尺
+			streetViewControl: false, // 第三方视角
+			rotateControl: false, // 45度角
+			fullscreenControl: true, // 是否全屏
+			clickableIcons: false, // 地图默认标记不会弹出infoWindow框
+
+		});
+		const centerControlDiv = document.createElement("div");
+		CenterControl(centerControlDiv, map, uluru);
+		map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv);
+		var marker = new google.maps.Marker({ // 我的当前位置标记
+			position: uluru,
+			map: map,
+		});
+
+		const contentString = `<div class="content">
+			<span>你当前的位置</span>
+		</div>`;
+		const infowindow = new google.maps.InfoWindow({
+			content: contentString,
+		});
+		marker.addListener("click", () => {
+			infowindow.open(map, marker);
+		});
+	}
+
+	window.setStaffList = function(staffArr) {
+		data = staffArr;
+		const sil = setInterval(() => {
+			if (map) {
+				clearInterval(sil);
+				markerStaffs();
+			}
+		}, 200);
+	}
+
+	// 待触发 `UniAppJSBridgeReady` 事件后，即可调用 uni 的 API。
+	document.addEventListener('UniAppJSBridgeReady', function() {
+		uni.postMessage({
+			data: {
+				action: 'loaded'
+			}
+		});
+
+		document.querySelector('#map').addEventListener('click', function(e) {
+			if (e.target.className === 'image') {
+				const id = e.target.attributes[2].value
+				uni.navigateTo({
+					url: '/pages/heart/userDetails/userDetails?id=' + id
+				});
+			}
+		})
+
+		// document.querySelector('.btn-list').addEventListener('click', function(evt) {
+		// 	var target = evt.target;
+		// 	if (target.tagName === 'BUTTON') {
+		// 		uni.navigateTo({
+		// 			url: '/pages/index/index'
+		// 		});
+		// 		var action = target.getAttribute('data-action');
+		// 		console.log(action);
+		// 	}
+		// });
+	});
+
+	function CenterControl(controlDiv, map, center) {
+		const DivBox = document.createElement("div");
+		DivBox.id = "delBtn";
+		controlDiv.appendChild(DivBox);
+		const btnIcon = document.createElement("img");
+		btnIcon.className = "btnIcon"
+		btnIcon.src = "./img/location.svg";
+		DivBox.appendChild(btnIcon);
+		infoWindow = new google.maps.InfoWindow();
+		DivBox.addEventListener("click", () => {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(
+					(position) => {
+						infoWindow.setPosition(center);
+						infoWindow.setContent("你当前的位置");
+						infoWindow.open(map);
+						map.setCenter(center);
+					},
+					() => {
+						handleLocationError(true, infoWindow, map.getCenter());
+					}
+				);
+			}
+		});
+	}
+
+	function markerStaffs() {
+		var markerDetails = [];
+		var infowindowDetails = [];
+		var currentIndex = -1;
+		var imageIcon = {
+			url: './img/circle.svg', 
+			scaledSize : new google.maps.Size(22, 22)
+		};
+		for (var i = 0; i < data.length; i++) {
+			markerDetails[i] = new google.maps.Marker({
+				position: {
+					lat: data[i].latitude,
+					lng: data[i].longitude,
+					...data[i]
+				},
+				map: map,
+				icon: imageIcon,
+				//icon: "./img/circle.svg",
+			});
+			infowindowDetails[i] = new google.maps.InfoWindow({
+				content: `<div class="content" id="userDetails" data-action="${data[i].employeeId}">
+			<div class="image" style="background: url( ${data[i].avatar} ) no-repeat center" data-action="${data[i].employeeId}">
+			</div>
+			<div class="info" >
+				<p class="name">${data[i].username}</p>
+				<p class='tag'><span>${data[i].city}</span><span>${data[i].lowestPrice||0}/${(data[i].lowestPriceMinute||0)/60}h</span></p>
+				<p class='tag'><span>${data[i].age}岁</span><span>${data[i].height}cm</span><span>${data[i].bustContent}</span><span>${data[i].weight}kg</span></p>
+			</div>
+		</div>`,
+			})
+		}
+		data.forEach(function(item, index) {
+			google.maps.event.addListener(markerDetails[index], "click", function() {
+				var flag = currentIndex === index;
+				if (!flag) {
+					infowindowDetails[index].open(map, markerDetails[index]);
+					if (currentIndex >= 0) {
+						infowindowDetails[currentIndex].close(map, markerDetails[currentIndex]);
+					}
+					currentIndex = index;
+				} else {
+
+					infowindowDetails[currentIndex].close(map, markerDetails[currentIndex]);
+					currentIndex = -1
+				}
+
+			});
+		})
+	}
+</script>

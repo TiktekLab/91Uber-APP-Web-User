@@ -1,0 +1,235 @@
+// 轮播图
+.swiperBox {
+	position: relative;
+	.swiper {
+		height: 500rpx;
+		width: 750rpx;
+
+		.swiper-item {
+			height: 500rpx;
+
+			.image {
+				width: 750rpx;
+				height: 500rpx;
+			}
+			.video {
+				height: 500rpx;
+				width: 750rpx;
+			}
+		}
+	}
+	.swiperInfo {
+		height: 48rpx;
+		right: 30rpx;
+		border-radius: 48rpx;
+		line-height: 48rpx;
+		padding: 0 20rpx;
+		position: absolute;
+		color: #fff;
+		&.staffStatus {
+			top: 90rpx;
+			background-color: $pink;
+			z-index: 1024;
+		}
+		&.pageInfo {
+			bottom: 30rpx;
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+	}
+}
+// 员工详情
+.staffDetails {
+	padding: 0 30rpx;
+	.info {
+		padding: 30rpx 0;
+		.name {
+			font-size: 42rpx;
+			color: #000;
+		}
+		.heart {
+			// width: 40rpx;
+			// height: 40rpx;
+			font-size: 40rpx;
+			&.active {
+				color: $pink;
+			}
+		}
+		.evaluate {
+			margin-top: 10rpx;
+			overflow: hidden;
+			.stars {
+				font-size: 30rpx;
+				color: #ffd60a;
+				margin-right: 10rpx;
+			}
+			.evalTitle {
+				color: #3d6ccb;
+				margin: 0 8rpx;
+				text-decoration: underline;
+				font-size: 24rpx;
+			}
+			.street {
+				lines: 1;
+				text-overflow: ellipsis;
+				// width: 500rpx;
+				-webkit-line-clamp: 1;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+			}
+		}
+	}
+	.itemBox {
+		padding: 30rpx 0;
+		border-top: 2rpx solid #eee;
+		.title {
+			// 标签
+			color: $pink;
+			font-size: 30rpx;
+			margin-bottom: 30rpx;
+		}
+		.tagBox {
+			//个人标签
+			flex-wrap: wrap;
+			.tag {
+				margin: 10rpx;
+				text-align: center;
+				min-width: 210rpx;
+				height: 64rpx;
+				line-height: 64rpx;
+				color: $pink;
+				background: rgba(255, 54, 162, 0.1);
+				border-radius: 64rpx;
+				// padding: 0 30rpx;
+			}
+		}
+		.classification {
+			// 所属的服务
+			.tag {
+				margin-left: 20rpx;
+			}
+			.serviceIcon {
+				color: #6b7582;
+				font-size: 40rpx;
+			}
+		}
+		.serviceBox {
+			// 感兴趣的服务
+			flex-wrap: wrap;
+			.serviceItem {
+				margin-right: 50rpx;
+			}
+		}
+		.basicInfo {
+			// 基本信息
+			flex-wrap: wrap;
+			margin-top: -15rpx;
+			.infoItem {
+				width: 345rpx;
+				margin: 15rpx 0;
+				.infoTitle {
+					margin-right: 30rpx;
+				}
+			}
+		}
+		.moneyBox {
+			// 收费
+			flex-wrap: wrap;
+			background-color: #f9f9f9;
+
+			.moneyItem {
+				border-bottom: 2rpx solid #eee;
+				height: 80rpx;
+				width: 630rpx;
+				&.borderNone {
+					border-bottom-width: 0rpx;
+				}
+			}
+		}
+		.timeSlot {
+			// 预约时间段
+			.timeItem {
+				width: 690rpx;
+				.timeTitle {
+					height: 80rpx;
+					.timeIcon {
+						width: 32rpx;
+						height: 28rpx;
+						margin-right: 20rpx;
+					}
+				}
+				.timeInfo {
+					margin-bottom: 20rpx;
+					.timeBtn {
+						border-radius: 10rpx;
+						border: 2rpx solid #000;
+						width: 300rpx;
+						height: 64rpx;
+						text-align: center;
+						line-height: 64rpx;
+					}
+				}
+			}
+		}
+	}
+}
+// 底部的按钮
+.footerBtnGroup {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding-top: 30rpx;
+	background-color: #fff;
+	border-top: 2rpx solid #eee;
+	padding-bottom: constant(safe-area-inset-bottom);
+	padding-bottom: env(safe-area-inset-bottom);
+	padding-bottom: 34px;
+	&.isAndroid {
+		padding-bottom: 50rpx;
+	}
+	.btn {
+		width: 300rpx;
+		height: 88rpx;
+		border-radius: 10rpx;
+		background-color: $pink;
+		line-height: 88rpx;
+		text-align: center;
+		color: #fff;
+		font-size: 30rpx;
+		
+		&.disable {
+			background-color: #a4a0a0;
+			color: #fff;
+		}
+	}
+}
+// 弹窗
+.popupBox {
+	width: 540rpx;
+	background-color: #fff;
+	border-radius: 20rpx;
+	.popupTitle {
+		padding: 30rpx 0;
+		.strong {
+			font-size: 30rpx;
+		}
+	}
+	.listItem {
+		height: 85rpx;
+		line-height: 85rpx;
+		border-top: 2rpx solid #eee;
+		.text {
+			text-align: center;
+			color: #007aff;
+			font-size: 30rpx;
+		}		
+		
+		&.disable {
+			background-color: #f2f2f2;
+			.text {
+				color: #a4a0a0;
+			}
+		}
+	}
+}

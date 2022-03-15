@@ -1,0 +1,113 @@
+.bodyMain {
+	background-color: #f9f9f9;
+	overflow: auto;
+	.moneyBg {
+		padding: 30rpx;
+		background-color: #fff;
+		.money {
+			background: linear-gradient(180deg, #ff36a2 0%, #ff58b2 48.88%, #ff36a2 100%);
+			flex-direction: column;
+			height: 280rpx;
+			text {
+				font-size: 64rpx;
+				color: #fff;
+				font-family: "PingFangSCBold";
+				margin: 10rpx 0;
+				&.btn {
+					font-size: 26rpx;
+					color: #fff;
+					width: 445rpx;
+					padding: 0 64rpx;
+					height: 60rpx;
+					border-radius: 60rpx;
+					border: 2rpx solid #fff;
+				}
+			}
+		}
+	}
+
+	.cardBox {
+		padding: 0 30rpx 30rpx 30rpx;
+		.shadow {
+			// box-shadow: 0 10rpx 20rpx 0 rgba(198, 218, 248, 0.25);
+			border-radius: 10rpx;
+			height: 100rpx;
+			margin: 30rpx 0;
+			background-color: #fff;
+			// border: 2rpx solid #ebf0f9;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			padding: 10rpx 20rpx;
+			.cardIcon {
+				width: 94rpx;
+				height: 82rpx;
+			}
+			.txt {
+				margin-left: 36rpx;
+			}
+		}
+		.three {
+			.text {
+				height: 100rpx;
+				line-height: 100rpx;
+			}
+			.item {
+				margin-top: 0;
+				flex: 1;
+				position: relative;
+				&:first-child {
+					border-right: 0;
+					border-radius: 10rpx 0 0 10rpx;
+				}
+				&:first-child::after {
+					content: "/";
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					right: -2rpx;
+					line-height: 100rpx;
+					margin: auto;
+				}
+				&:nth-child(2) {
+					border-left: 0;
+					border-radius: 0 10rpx 10rpx 0;
+				}
+				&:last-child {
+					margin-left: 20rpx;
+				}
+			}
+		}
+	}
+	.Recharge {
+		padding: 100rpx;
+	}
+
+	.Tips {
+		position: fixed;
+		bottom: 250rpx;
+		text {
+			font-size: 22rpx;
+			color: #a4a0a0;
+		}
+	}
+	.PreciseSearch {
+		// 按钮部分
+		margin: 0;
+		padding-top: 30rpx;
+		border-top: 2rpx solid #eee;
+		padding-bottom: constant(safe-area-inset-bottom);
+		padding-bottom: env(safe-area-inset-bottom);
+		&.isAndroid {
+			padding-bottom: 50rpx;
+		}
+		.searchBtn {
+			height: 100rpx;
+		}
+	}
+	.web-view {
+		flex: 1;
+		position: fixed;
+		top: 0;
+	}
+}

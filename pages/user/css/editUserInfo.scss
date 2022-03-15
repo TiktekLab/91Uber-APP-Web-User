@@ -1,0 +1,43 @@
+.navBar{
+	.u-icon{
+		font-size: 40rpx;
+		margin-right: 40rpx;
+		color: #606266;
+	}
+}
+.avatarBox{
+	padding: 80rpx 0;
+	flex-direction: column;
+	.avatar{
+		width: 130rpx;
+		height: 130rpx;
+		border-radius: 50%;
+		overflow: hidden;
+		image{
+			border-radius: 50%;
+			
+		}
+	}
+	.userIcon{  // 默认头像
+		background-color: #EFECE8;
+		.u-icon{
+			font-size: 80rpx;
+			color: #C6C3BD;
+		}
+	}
+	text{
+		margin-top: 20rpx;
+		font-size: $font-size-base;
+		color: $pink;
+	}
+}
+.item{
+	.title{
+		font-size: $font-size-base;
+		color: $pink;
+	}
+	.input{
+		border-bottom: 2rpx solid #EAEAEA;
+		
+	}
+}

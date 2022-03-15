@@ -1,0 +1,76 @@
+// 用户信息
+.userInfo {
+	.bodyBG {
+		height: 140rpx;
+	}
+	.user {
+		margin-top: -110rpx;
+		.avatar {
+			width: 160rpx;
+			height: 160rpx;
+			flex: 0 0 160rpx;
+			margin: 0 auto 10rpx;
+			image{
+				border-radius: 50%;
+				overflow: hidden;
+			}
+		}
+		.info {
+			flex-direction: column;
+			border-bottom: 2rpx solid rgba(128, 128, 128, 0.1);
+			padding-bottom: 30rpx;
+			text {
+				font-size: 24rpx;
+				color: #000;
+				-webkit-line-clamp: 1;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				&.num{
+					height: 30rpx;
+				}
+				&.name {
+					font-size: 48rpx;
+					margin: 10rpx 0;
+				}
+				&.icon {
+					color: #ffc107;
+					margin-left: 10rpx;
+				}
+			}
+		}
+	}
+}
+// 评价
+.comment {
+	padding: $padding-base $padding-base 0;
+	.title{
+		font-size: 28rpx;
+		color: #000;
+		font-family: 'PingFangSCBold';
+		margin-bottom: 20rpx;
+	}
+	.commentList{
+		flex-wrap: wrap;
+		.item{
+			padding: 10rpx 20rpx;
+			background-color: $pink;
+			border-radius: 8rpx;
+			margin: 10rpx;
+			.count{
+				color: $font-color-pink;
+				background-color: #fff;
+				font-size: 16rpx;
+				padding: 4rpx 6rpx;
+				border-radius: 4rpx;
+				margin-right: 10rpx;
+			}
+			.text{
+				color: #fff;
+				font-family: 'PingFangSCBold';
+				white-space: nowrap;
+				font-size: $font-size-base;
+			}
+		}
+	}
+}

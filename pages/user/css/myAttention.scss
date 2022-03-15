@@ -1,0 +1,32 @@
+.main {
+	.itemList {
+		margin: 30rpx 0;
+		.left {
+			.avatar {
+				width: 130rpx;
+				height: 130rpx;
+				flex:  0 0 130rpx;
+				margin-right: 30rpx;
+				image {
+					border-radius: 50%;
+					overflow: hidden;
+				}
+				.userName {
+					font-size: 32rpx;
+					color: #000;
+				}
+			}
+		}
+		.right {
+			.btn {
+				width: 140rpx;
+				height: 50rpx;
+
+				border: 2rpx solid #e4e4e4;
+				border-radius: 50rpx;
+				font-size: 20rpx;
+				color: #000;
+			}
+		}
+	}
+}

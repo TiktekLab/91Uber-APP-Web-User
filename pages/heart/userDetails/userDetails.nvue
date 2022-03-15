@@ -1,0 +1,419 @@
+<template>
+	<view class="bodyNvue">
+		<!-- 轮播图 -->
+		<view class="swiperBox" v-if="staffInfo">
+			<swiper class="swiper" @change="changeSwiper">
+				<swiper-item class="swiper-item flex-center" @click="viewPic(staffInfo.images, index)"
+					v-for="(item, index) in staffInfo.images" :key="index">
+					<image class="image" :src="item" mode="aspectFill" />
+				</swiper-item>
+				<swiper-item class="swiper-item flex-center" v-if="staffInfo.video">
+					<video loop  controls enable-play-gesture class="video" :src="staffInfo.video" />
+				</swiper-item>
+			</swiper>
+			<text class="staffStatus swiperInfo flex-center text font-PingFangSCMedium"
+				v-if="isShowCurrentInfo">{{ staffStatus }}</text>
+			<text class="pageInfo swiperInfo flex-center text font-PingFangSCMedium"
+				v-if="isShowCurrentInfo">{{ currentInfo }}</text>
+		</view>
+		<!-- 员工详情 -->
+		<view class="staffDetails">
+			<view class="info">
+				<view class="flex-space-between flex-row">
+					<text class="name font-PingFangSCBold">{{ staffInfo.username }}</text>
+					<text :class="['uni-icon heart', { active: isfollow }]"
+						@click="followOperate(staffInfo)">{{ isfollow ? "&#xe60f;" : "&#xe60e;" }}</text>
+				</view>
+				<view class="flex-start flex-row evaluate">
+					<text class="uni-icon stars">&#xe642;</text>
+					<text class="text font-PingFangSCMedium">{{ staffInfo.score | scoreFormat() }} (</text>
+					<text class="text font-PingFangSCMedium evalTitle" @click="navigateTo">{{ evaluationCount }}评论</text>
+					<text class="text font-PingFangSCMedium street">) {{ formatStreet(staffInfo.street) }}</text>
+					<!-- <text class="text font-PingFangSCMedium street">) {{ formatAddress }}</text> -->
+				</view>
+			</view>
+			<view class="itemBox">
+				<text class="title text font-PingFangSCBold">自我介绍</text>
+				<text class="text font-PingFangSCMedium">{{ staffInfo.remark }}</text>
+			</view>
+			<view class="itemBox">
+				<text class="title text font-PingFangSCBold">个人标签</text>
+				<view class="flex-row flex-start tagBox">
+					<text class="text tag font-PingFangSCMedium" v-for="(item, index) in staffInfo.labels"
+						:key="index">{{ item }}</text>
+				</view>
+			</view>
+			<view class="itemBox">
+				<text class="title text font-PingFangSCBold">所属的类型</text>
+				<view class="flex-row flex-start classification" v-if="classification">
+					<!-- <span class="uni-icon serviceIcon" v-html="classification.icon"></span> -->
+					<!-- <text class="uni-icon serviceIcon" >{{ classification.icon }}</text> -->
+					<!-- <text class="uni-icon serviceIcon" >{{ classification.icon }}</text> -->
+					<text class="uni-icon serviceIcon" v-if="classification.icon === '&#xe611;'">&#xe611;</text>
+					<text class="uni-icon serviceIcon" v-if="classification.icon === '&#xe612;'">&#xe612;</text>
+					<text class="uni-icon serviceIcon" v-if="classification.icon === '&#xe613;'">&#xe613;</text>
+					<text class="uni-icon serviceIcon" v-if="classification.icon === '&#xe615;'">&#xe615;</text>
+					<text class="uni-icon serviceIcon" v-if="classification.icon === '&#xe61d;'">&#xe61d;</text>
+					<text class="uni-icon serviceIcon" v-if="classification.icon === '&#xe614;'">&#xe614;</text>
+					<text class="text tag font-PingFangSCMedium">{{ classification.content }}</text>
+				</view>
+			</view>
+			<view class="itemBox">
+				<text class="title text font-PingFangSCBold">兴趣爱好</text>
+				<view class="flex-row flex-start serviceBox">
+					<view class="serviceItem flex-center flex-row" v-for="(item, index) in staffInfo.serves"
+						:key="index">
+						<text class="text tag font-PingFangSCMedium">{{ item }}</text>
+					</view>
+				</view>
+			</view>
+			<view class="itemBox">
+				<text class="title text font-PingFangSCBold">基本信息</text>
+				<view class="flex-row flex-start basicInfo">
+					<view class="infoItem flex-row flex-start">
+						<text class="text infoTitle font-PingFangSCMedium">年龄</text>
+						<text class="text font-PingFangSCMedium">{{ staffInfo.age }}岁</text>
+					</view>
+					<view class="infoItem flex-row flex-start">
+						<text class="text infoTitle font-PingFangSCMedium">身材类型</text>
+						<text class="text font-PingFangSCMedium">{{ staffInfo.figure }}</text>
+					</view>
+					<view class="infoItem flex-row flex-start">
+						<text class="text infoTitle font-PingFangSCMedium">身高</text>
+						<text class="text font-PingFangSCMedium">{{ staffInfo.height }}cm</text>
+					</view>
+					<view class="infoItem flex-row flex-start">
+						<text class="text infoTitle font-PingFangSCMedium">胸围</text>
+						<text class="text font-PingFangSCMedium">{{ staffInfo.bust }}</text>
+					</view>
+					<view class="infoItem flex-row flex-start">
+						<text class="text infoTitle font-PingFangSCMedium">体重</text>
+						<text class="text font-PingFangSCMedium">{{ staffInfo.weight }}kg</text>
+					</view>
+				</view>
+			</view>
+			<view class="itemBox">
+				<text class="title text font-PingFangSCBold">收费标准-堂食</text>
+				<view class="flex-start moneyBox padding m-radius" v-if="staffInfo.prices">
+					<!-- borderNone 最后一个添加此样式，去除下边框 -->
+					<view
+						:class="['moneyItem flex-space-between flex-row', { borderNone: index + 1 === staffInfo.prices.filter(t => t.type === 0).length }]"
+						v-for="(item, index) in staffInfo.prices.filter(t => t.type === 0)" :key="index">
+						<text class="text font-PingFangSCMedium">{{ item.minute }}分钟</text>
+						<text class="text font-PingFangSCMedium">${{ item.price }}.00</text>
+					</view>
+				</view>
+			</view>
+			<view class="itemBox">
+				<text class="title text font-PingFangSCBold">收费标准-外卖 Outcall</text>
+				<view class="flex-start moneyBox padding m-radius" v-if="staffInfo.prices">
+					<!-- borderNone 最后一个添加此样式，去除下边框 -->
+					<view
+						:class="['moneyItem flex-space-between flex-row', { borderNone: index + 1 === staffInfo.prices.filter(t => t.type === 1).length }]"
+						v-for="(item, index) in staffInfo.prices.filter(t => t.type === 1)" :key="index">
+						<text class="text font-PingFangSCMedium">{{ item.minute }}分钟</text>
+						<text class="text font-PingFangSCMedium">${{ item.price }}.00</text>
+					</view>
+				</view>
+			</view>
+			<view class="itemBox">
+				<text class="title text font-PingFangSCBold">可预约时间</text>
+				<view class="flex-start timeSlot">
+					<view class="timeItem" v-for="(item, index) in workDateList" :key="index">
+						<view class="timeTitle flex-start flex-row">
+							<image class="timeIcon" src="@/static/icon/timeSlot.png" mode="aspectFill" />
+							<text class="text font-PingFangSCMedium">{{ item }}</text>
+						</view>
+						<!-- <view class="timeInfo flex-space-between flex-row" v-for="hour in workHourList" :key="hour.id"
+							v-if="item == formatDate(hour.startTime)">
+							<text class="text font-PingFangSCMedium">{{ formatTime(hour.startTime) }}-{{ formatTime(hour.endTime) }}</text>
+							<text class="text timeBtn flex-center font-PingFangSCMedium">立即预约</text>
+						</view> -->
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 底部的按钮 -->
+		<view class="footerBtnGroup flex-space-between padding flex-row" :class="[{ isAndroid: isAndroid }]">
+			<text class="text font-PingFangSCMedium btn" @click="downloadProfile">下载Profile</text>
+			<text v-if="canBooking" class="text font-PingFangSCMedium btn" @click="openPopup">立即预约</text>
+			<text v-else class="text font-PingFangSCMedium btn disable">立即预约</text>			
+		</view>
+		<!-- 弹窗 -->
+		<uni-popup ref="popup" type="center" :mask-click="false">
+			<view class="popupBox">
+				<view class="popupTitle flex-center">
+					<text class="text strong font-PingFangSCBold">立即预约</text>
+					<text class="text font-PingFangSCMedium">请问您需要堂食还是外卖 Outcall？</text>
+				</view>
+				<view class="listItem flex-center" @click="selectOrder(0)"><text class="text font-PingFangSCMedium">堂食</text></view>
+				<view class="listItem flex-center" @click="selectOrder(1)"><text class="text font-PingFangSCMedium">外卖 Outcall</text></view>
+				<view class="listItem flex-center" @click="closePopup"><text class="text font-PingFangSCMedium">取消</text></view>
+			</view>
+		</uni-popup>
+	</view>
+</template>
+
+<script>
+	// #ifdef APP-NVUE
+	const domModule = uni.requireNativePlugin("dom");
+	domModule.addRule("fontFace", {
+		fontFamily: "uniIcon",
+		// src: "url('https://at.alicdn.com/t/font_2559015_s3rse1zkm0o.ttf?t=1629167755534')"
+		src: "url('../../../static/font/iconfont.ttf')"
+	});
+	domModule.addRule("fontFace", {
+		fontFamily: "PingFangSCBold",
+		src: "url('../../../static/font/PingFangSCBold.ttf')"
+	});
+	domModule.addRule("fontFace", {
+		fontFamily: "PingFangSCMedium",
+		src: "url('../../../static/font/PingFangSCMedium.ttf')"
+	});
+	domModule.addRule("fontFace", {
+		fontFamily: "PingFangSCRegular",
+		src: "url('../../../static/font/PingFangSCRegular.ttf')"
+	});
+	// #endif
+	import { downloadFile } from "@/common/js/filerequest.js";
+	import $http from "@/common/js/httprequest.js";
+	import $api from "@/common/js/api.js";
+	import $base from "@/common/js/baseconfig.js";
+	import filters from "@/plugins/filters.js";
+	import moment from "moment";
+	import { mapState } from "vuex";
+	import { followStaff, unFollowStaff } from "@/common/js/apiCommon.js";
+	export default {
+		filters:{
+			scoreFormat(score) {
+				return filters.scoreFormat(score);
+			}
+		},
+		data() {
+			return {
+				isAndroid: false,
+				currentSwiper: 0,
+				staffId: undefined, // 员工id
+				isfollow: false, // 是否关注
+				staffInfo: {
+					prices: []
+				},
+				workHourList: undefined,
+				workDateList: undefined,
+				evaluationCount: undefined,
+				classification: {}, // 员工所属分类
+				canBooking: false, //是否可预约
+				hallFoodBooking: false, //堂食是否可约
+				outCallBooking: false , //外卖是否可约
+			};
+		},
+		onLoad(option) {
+			this.staffId = option.id;
+			this.getData();
+			uni.setNavigationBarTitle({
+				title: "LastName"
+			});
+		},
+		mounted() {
+			const res = uni.getSystemInfoSync();
+			if (res.platform === "android") {
+				return (this.isAndroid = true);
+			}
+			return (this.isAndroid = false);
+		},
+		methods: {
+			getData() {
+				$http.get($api.staffInfo + this.staffId).then(res => {
+					this.staffInfo = res.employee;
+					if (this.staffInfo.avatar) {
+						this.staffInfo.images.push(this.staffInfo.avatar);
+					}
+					//console.log("*****员工详情*****", this.staffInfo);
+					this.classification = this.staffCategory.find(item => item.id === this.staffInfo.classificationIds[0]);
+					uni.setStorageSync("staffInfo", this.staffInfo);
+					uni.setNavigationBarTitle({
+						title: this.staffInfo.username
+					});
+					
+					//判断是否可以预约
+					if(this.staffInfo.prices.length){
+						this.canBooking = this.staffInfo.prices.some(item => item.price > 0);	
+						this.hallFoodBooking = this.staffInfo.prices.some(item => item.type === 0 && item.price > 0);	
+						this.outCallBooking = this.staffInfo.prices.some(item => item.type === 1 && item.price > 0);	
+					}
+				});
+
+				$http.get($api.evaluationCount(this.staffId), { type: 2 }).then(res => {
+						this.evaluationCount = res.count;
+				});
+
+				$http.get($api.staffWorkHour, { employeeId: this.staffId }).then(res => {
+						this.workHourList = res.list;
+						const dateArr = this.workHourList.map(workHour => this.formatDate(workHour.startTime));
+						this.workDateList = [...new Set(dateArr)];
+				});
+
+				$http.get($api.staffIsFollow(this.staffId)).then(res => {
+					this.isfollow = res.isFollow;
+				});
+			},
+			navigateTo() {
+				uni.navigateTo({
+					url: "../evaluateList/evaluateList?staffId=" + this.staffId + "&score=" + this.staffInfo.score + "&evaluationCount=" + this.evaluationCount
+				});
+			},
+			changeSwiper(e) {
+				this.currentSwiper = e.detail.current;
+			},
+			viewPic(e, i) {
+				uni.previewImage({
+					urls: e,
+					indicator: "default",
+					loop: true,
+					current: i
+				});
+				console.log("查看图片：", e);
+			},
+			openPopup() {
+				// 打开弹框
+				this.$refs.popup.open();
+			},
+			closePopup() {
+				// 关闭弹框
+				this.$refs.popup.close();
+			},
+			selectOrder(e) {
+				if(e === 0 && !this.hallFoodBooking){
+					return uni.showToast({
+						title: '该商户不提供堂食服务',
+						icon: 'none'
+					});	
+				}
+				if(e === 1 && !this.outCallBooking){
+					return uni.showToast({
+						title: '此商家不提供外卖服务',
+						icon: 'none'
+					});	
+				}
+				// 选择套餐
+				this.closePopup();
+				const price = this.staffInfo.prices.find(price => price.type == e);
+				if (!price) return;
+				const minute = price.minute;
+				uni.navigateTo({
+					url: "../timePicker/timePicker?orderType=" + e + "&staffId=" + this.staffId + "&minute=" + minute
+				});
+			},
+			followOperate(obj) {
+				if (this.isfollow) {
+					// 取消关注
+					unFollowStaff(obj.id).then(res => {
+						this.isfollow = !this.isfollow;
+						uni.showToast({
+							title: "已取消关注"
+						});
+					});
+				} else {
+					// 关注
+					followStaff(obj.storeId, obj.id).then(res => {
+						this.isfollow = !this.isfollow;
+						uni.showToast({
+							title: "关注成功"
+						});						
+					});
+				}
+			},
+			//下载Profile
+			downloadProfile() {	
+				downloadFile({
+					url: $api.downloadStaffProfile(this.staffId),
+					header:{ 'content-type':'image/png;charset=utf-8' },
+					loading: true
+				}).then(res => {
+					uni.openDocument({
+						filePath: res.tempFilePath,
+						success: function(res) {
+							//console.log('打开文档成功');
+						}
+					});	
+				}).catch(err => {
+					console.log("err",err);
+					uni.showToast({
+						title: '下载失败',
+						icon: 'none'
+					});					
+				});
+			}
+		},
+		computed: {
+			...mapState({
+				staffCategory: state => state.staffCategory
+			}),
+			currentInfo() {
+				return this.currentSwiper + 1 + " of " + (this.staffInfo.video ? this.staffInfo.images.length + 1 : this.staffInfo.images.length);
+			},
+			staffStatus() {
+				return this.staffInfo.status === 1 ? "我有时间" : "等我有空"
+			},
+			isShowCurrentInfo() {
+				return this.staffInfo.images && (this.currentSwiper < this.staffInfo.images.length)
+			},
+			formatDate() {
+				return time => {
+					if (time) return moment(time.replace("T", " ")).locale("zh-cn").format("ddd DD MMMM YYYY");
+					return "";
+				};
+			},
+			formatTime() {
+				return time => {
+					if (time) return moment(time.replace("T", " ")).format("HH:mm");
+					return "";
+				};
+			},
+			formatAddress() {
+				return this.staffInfo.city + ', ' + this.staffInfo.province
+			},
+			formatStreet() {
+				return str => {
+					if (str) {
+						let lastIndex = str.indexOf(",");
+						return str.substring(lastIndex + 2, str.length);
+					}
+					return "";
+				};
+			}
+		}
+	};
+</script>
+<style lang="scss">
+	// 字体样式
+	.uni-icon {
+		font-family: uniIcon;
+		font-size: 16px;
+		font-style: normal;
+	}
+
+	.font-PingFangSCBold {
+		font-family: PingFangSCBold;
+		font-weight: 500;
+		font-style: normal;
+	}
+
+	.font-PingFangSCMedium {
+		font-family: PingFangSCMedium;
+		font-weight: 500;
+		font-style: normal;
+	}
+
+	.font-PingFangSCRegular {
+		font-family: PingFangSCRegular;
+		font-weight: 400;
+		font-style: normal;
+	}
+
+	.bodyNvue {
+		width: 750rpx;
+		padding-bottom: 170rpx;
+	}
+</style>
+<style lang="scss" scoped src="../css/userDetails.scss"></style>

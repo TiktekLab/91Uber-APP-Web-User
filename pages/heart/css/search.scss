@@ -1,0 +1,143 @@
+// 搜索框
+.searchBox {
+	align-items: flex-start;
+	// margin-top: 48rpx;
+	border-bottom: 2rpx solid #eee;
+	.iconfont {
+		line-height: 70rpx;
+	}
+	.centent {
+		flex: 1;
+		.addressList {
+			flex-wrap: wrap;
+			.item {
+				height: 48rpx;
+				border-radius: 48rpx;
+				font-family: PingFangSCRegular;
+				background-color: #3d6ccb;
+				padding: 0 20rpx;
+				margin: 0 10rpx 10rpx 0;
+				color: #fff;
+				white-space: nowrap;
+			}
+		}
+	}
+	.delIcon{  // 清空按钮
+		color: #fff;
+		width: 40rpx;
+		height: 40rpx;
+		flex: 0 0 40rpx;
+		border-radius: 50%;
+		font-size: 26rpx;
+		background-color: #ccc;
+		margin: 15rpx;
+	}
+	.cancel {  // 取消按钮
+		width: 68rpx;
+		flex: 0 0 68rpx;
+		line-height: 70rpx;
+	}
+}
+// 添加当前位置
+.myPosition {
+	padding-top: 30rpx;
+	padding-bottom: 30rpx;
+	border-bottom: 20rpx solid #f9f9f9;
+	.left {
+		.iconfont {
+			font-size: 40rpx;
+			margin-right: 30rpx;
+		}
+	}
+	.plus {
+		font-size: 30rpx;
+	}
+}
+// 搜索此区域的人
+.persons {
+	border-bottom: 20rpx solid #f9f9f9;
+	padding-top: 20rpx;
+	padding-bottom: 20rpx;
+	.left {
+		.avatarBox {
+			flex-wrap: wrap;
+			width: 115rpx;
+			margin-right: 20rpx;
+			.avatar {
+				width: 44rpx;
+				margin: 6rpx;
+				flex: 0 0 44rpx;
+				height: 44rpx;
+				overflow: hidden;
+				.m-icon {
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+				}
+			}
+		}
+		.title {
+			color: #000;
+			font-family: PingFangSCBold;
+		}
+	}
+	.u-icon {
+		margin-left: 20rpx;
+		/deep/.u-icon__icon {
+			color: #c4c4c6;
+		}
+	}
+}
+// 搜索历史
+.searcPlace {
+	padding-top: 30rpx;
+	&.history{
+		padding-bottom: 200rpx;		
+	}
+	.searchTitle {
+		text {
+			font-family: PingFangSCBold;
+			font-size: 30rpx;
+		}
+	}
+	.searchList {
+		padding: 25rpx 30rpx;
+		border-bottom: 2rpx solid #eee;
+		&:last-child {
+			border: none;
+		}
+		.searchIcon {
+			flex: 0 0 36rpx;
+			margin-right: 20rpx;
+			.iconfont {
+				font-size: 36rpx;
+			}
+		}
+		.content {
+			width: 590rpx;
+			overflow: auto;
+			text {
+				width: 590rpx;
+				white-space: nowrap;
+			}
+		}
+		.plus {
+			font-size: 30rpx;
+		}
+	}	
+	
+}
+// 继续精确搜索
+.PreciseSearch {
+	margin: 0;
+	border-top: 2rpx solid #eee;
+	padding-top: 30rpx;
+	padding-bottom: constant(safe-area-inset-bottom);
+	padding-bottom: env(safe-area-inset-bottom);
+	&.isAndroid{
+		padding-bottom: 50rpx;
+	}
+	.searchBtn {
+		height: 100rpx;
+	}
+}

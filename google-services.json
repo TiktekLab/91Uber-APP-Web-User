@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "828694534188",
+    "project_id": "uberc-cafcc",
+    "storage_bucket": "uberc-cafcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828694534188:android:3c0fdc7c59f1a0dc639989",
+        "android_client_info": {
+          "package_name": "com.customer91uber.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "828694534188-lm3ac4b963gu2c1qjm0hd0mui2ojmgfp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.customer91uber.com",
+            "certificate_hash": "71b327e5700e859c258a805364daf84d9b21443c"
+          }
+        },
+        {
+          "client_id": "828694534188-3695aebhfj1l00eqgueul4rqltpioq30.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAarb64T6JNqza8UOtqIssZMuiXY1_krvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "828694534188-3695aebhfj1l00eqgueul4rqltpioq30.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

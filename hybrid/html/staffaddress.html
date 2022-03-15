@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<style type="text/css">
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+
+			.address {
+				width: 100%;
+				height: 4rem;
+				margin-top: 0;
+				padding: 1em;
+				font-size: 32px;
+				border: 1px solid #686868;
+				background-color: #eff6f9;
+				color: #000;
+				border-radius: 6px;
+			}
+
+			.pac-item {
+				height: 100px;
+				padding: 0 20px;
+				line-height: 100px;
+				font-size: 32px;
+			}
+
+			.pac-item .pac-item-query {
+				line-height: 100px;
+				font-size: 32px;
+			}
+
+			.pac-item .pac-icon {
+				width: 32px;
+				height: 32px;
+				background-image: url(img/location.png);
+				background-position: top center;
+				background-repeat: no-repeat;
+				background-size: 32px;
+				margin-top: 34px;
+			}
+		</style>
+	</head>
+	<body>
+		<input id="ship-address" class="address" type="text" autocomplete="off" placeholder="请输入员工模糊地址" />
+		<script src="js/common.js"></script>
+		<script src="js/uni.webview.1.5.2.js"></script>
+		<script>
+			let addAddressIndex = getQueryVariable("index");
+			let googleKey = getQueryVariable("googleKey");
+			let address = getQueryVariable("address") || "";
+			let autocomplete;
+			let address1Field;
+			if (address) {
+				address = decodeURIComponent(address);
+			}
+			if (googleKey) {
+				var script = document.createElement('script');
+				script.src =
+					'https://maps.googleapis.com/maps/api/js?key=' + googleKey +
+					'&callback=initAutocomplete&libraries=places&region=AU&language=en-AU&v=weekly';
+				script.async = true;
+				window.initAutocomplete = function() {
+					address1Field = document.querySelector("#ship-address");
+					address1Field.value = address;
+					autocomplete = new google.maps.places.Autocomplete(address1Field, {
+						componentRestrictions: {
+							country: ["au"]
+						},
+						fields: ["address_components", "geometry"],
+						types: ["address"]
+					});
+					autocomplete.addListener("place_changed", fillInAddress);
+				};
+				document.head.appendChild(script);
+			}
+
+			function fillInAddress() {
+				const place = autocomplete.getPlace();
+				let address1 = "";
+				let postcode = "";
+				let street = "";
+				let city = "";
+				let province = "";
+				let region = "";
+				for (const component of place.address_components) {
+					const componentType = component.types[0];
+					switch (componentType) {
+						case "street_number": {
+							address1 = `${component.long_name} ${address1}`;
+							break;
+						}
+						case "route": {
+							address1 += component.long_name;
+							break;
+						}
+						case "postal_code": {
+							postcode = `${component.long_name}${postcode}`;
+							break;
+						}
+						case "postal_code_suffix": {
+							postcode = `${postcode}-${component.long_name}`;
+							break;
+						}
+						case "locality": //区(市)
+							address1 += ',' + component.long_name;
+							city = component.long_name;
+							break;
+						case "administrative_area_level_1": { //州
+							address1 += ',' + component.short_name;
+							province = component.short_name;
+							break;
+						}
+						case "country": //region/country
+							address1 += ',' + component.short_name;
+							region = component.short_name;
+							break;
+					}
+				}
+				address1Field.value = address1;
+				uni.postMessage({
+					data: {
+						index: addAddressIndex,
+						street: address1,
+						city,
+						province,
+						region,
+						postcode
+					}
+				});
+				uni.navigateBack();
+			}
+		</script>
+	</body>
+</html>

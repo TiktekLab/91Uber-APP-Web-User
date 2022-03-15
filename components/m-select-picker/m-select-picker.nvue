@@ -1,0 +1,371 @@
+<template>
+	<div v-if="isShow">
+		<div class="address-picker-mask" bubble='true' @click.stop="hide"
+			:class="[isOpen?'show-address-picker-mask':'hide-address-picker-mask']"
+			:style="{backgroundColor:maskColor,opacity:opacity}">
+		</div>
+		<!-- #ifdef APP-PLUS-NVUE -->
+		<div class="address-picker-container show-address-picker" ref="selectPickerEl" @click.stop="handleClick"
+			:class="[isOpen?'show-address-picker':'hide-address-picker']">
+			<!-- #endif -->
+			<!-- #ifndef APP-PLUS-NVUE -->
+			<div class="address-picker-container" @click.stop="handleClick"
+				:class="[isOpen?'show-address-picker':'hide-address-picker']"
+				:style="{transform:'translatey('+translatey+'px)'}">
+				<!-- #endif -->
+				<div class="address-picker-button row between-center">
+					<text class="address-picker-button-text fontFamily" :style="`color:${cancelTextColor};`"
+						@click.stop="cancelChange">{{cancelText}}</text>
+					<text class="address-picker-button-text fontFamily" :style="`color:${confirmTextColor};`"
+						@click.stop="confirmChange(value)">{{confirmText}}</text>
+				</div>
+				<div class="center" v-if="titleText">
+					<text :style="`color:${titleTextColor};`" class="fontFamily">{{titleText}}</text>
+				</div>
+				<picker-view class="address-picker-box" v-if="visible" :indicator-style="indicatorStyle" :value="value"
+					@change="bindChange">
+					<picker-view-column>
+						<div class="address-picker-item center" v-for="(item,index) in firstColumList" :key="index">
+							<text class="address-picker-item-text fontFamily">{{item.value}}</text>
+						</div>
+					</picker-view-column>
+					<picker-view-column>
+						<div class="address-picker-item center" v-for="(item,index) in secondColumList" :key="index">
+							<text class="address-picker-item-text fontFamily">{{item.value}}</text>
+						</div>
+						<div class="address-picker-item center" v-if="secondColumList.length === 0">
+							<text class="address-picker-item-text fontFamily">暂无可预约时间</text>
+						</div>
+					</picker-view-column>
+				</picker-view>
+			</div>
+		</div>
+</template>
+
+<script>
+	// #ifdef APP-PLUS-NVUE
+	const animation = weex.requireModule('animation');
+	// #endif
+	import moment from 'moment';
+	export default {
+		name: "mSelectPicker",
+		props: {
+			maskColor: { // 模态框背景色
+				type: String,
+				default: 'rgba(0,0,0,0.3)'
+			},
+			linkage: { //是否联动
+				type: Boolean,
+				default: false
+			},
+			valueIndex: { // 修改时使用，对应的索引数组
+				type: Array,
+				default () {
+					return [0, 0]
+				}
+			},
+			titleText: {
+				type: [String, Number],
+				default: undefined
+			},
+			titleTextColor: {
+				type: String,
+				default: '#686868'
+			},
+			cancelText: {
+				type: String,
+				default: '取消'
+			},
+			cancelTextColor: {
+				type: String,
+				default: '#686868'
+			},
+			confirmText: {
+				type: String,
+				default: '确认'
+			},
+			confirmTextColor: {
+				type: String,
+				default: '#F1598E'
+			},
+			cancelOption: { //cancel：取消，prev：上一步
+				type: String,
+				default: 'cancel'
+			},
+			confirmOption: { //confirm：完成，next：下一步
+				type: String,
+				default: 'confirm'
+			},
+			firstColumData: {
+				type: Array,
+				default: []
+			},
+			secondColumData: {
+				type: Array,
+				default: []
+			}
+		},
+		data() {
+			return {
+				isShow: false, // 是否弹出
+				isOpen: false,
+				translatey: 500, // 弹出层高度
+				opacity: 0, // 模态框透明度
+				visible: true,
+				indicatorStyle: `height: ${Math.round(uni.getSystemInfoSync().screenWidth/(750/100))}px;`,
+				timeCommonFormat: 'YYYY-MM-DD HH:mm:ss',
+				value: [], // 设置默认选中
+			}
+		},
+		mounted() {
+			this.value = this.valueIndex;
+		},
+		computed: {
+			firstColumList() {
+				return this.firstColumData;
+			},
+			secondColumList() {
+				if (this.linkage) {
+					if (this.value.length && this.firstColumData.length) {
+						return this.firstColumData[this.value[0]].children;
+					}
+					return [];
+				}
+				return this.secondColumData;
+			}
+		},
+		methods: {
+			// 确认选中
+			confirmChange(val) {
+				let firstValue = this.firstColumList[val[0]];
+				let secondValue = this.secondColumList[val[1]];
+				if (!firstValue || !secondValue) {
+					return uni.showToast({
+						title: '请选择',
+						icon: 'none'
+					})
+				}
+				if (!this.linkage) {
+					let start = moment(firstValue.id, this.timeCommonFormat);
+					let end = moment(secondValue.id, this.timeCommonFormat);
+					if (moment(end).isSameOrBefore(start, 'minute')) {
+						return uni.showToast({
+							title: '结束时间须大于开始时间',
+							icon: 'none'
+						})
+					}
+				}
+				let result = {
+					option: this.confirmOption,
+					firstColumIndex: val[0],
+					firstColumValue: firstValue,
+					secondColumIndex: val[1],
+					secondColumValue: secondValue
+				}
+				this.$emit('confirmChange', result);
+				this.hide();
+			},
+			cancelChange() {
+				let result = {
+					option: this.cancelOption
+				}
+				this.$emit('cancelChange', result);
+				this.hide();
+			},
+			// 监听选中
+			bindChange(e) {
+				const val = e.detail.value;
+				this.value = [val[0], val[1]];
+			},
+			show() {
+				this.value = this.valueIndex;
+				// 显示
+				// 渲染视图
+				this.isShow = true;
+				// 等待视图渲染
+				this.$nextTick(() => {
+					setTimeout(() => {
+						// #ifdef APP-PLUS-NVUE
+						// APP 端获取动画元素
+						let ele = this.$refs.selectPickerEl;
+						// #endif
+
+						// 执行 mask 透明度
+						this.isOpen = true;
+						this.opacity = 1;
+
+						// #ifndef APP-PLUS-NVUE
+						// 非APP 端 执行动画
+						this.translatey = 0;
+						// #endif
+
+						// #ifdef APP-PLUS-NVUE
+						// APP 端执行动画
+						animation.transition(ele, {
+							styles: {
+								transform: 'translate(0,0)',
+								transformOrigin: 'center center'
+							},
+							duration: 250, //ms
+							timingFunction: 'ease',
+							delay: 0 //ms
+						});
+						// #endif
+
+					}, 10);
+				});
+			},
+			hide() {
+				// #ifdef APP-PLUS-NVUE
+				// APP 端获取动画元素
+				let ele = this.$refs.selectPickerEl;
+				// #endif
+
+				// 执行 mask 透明度
+				this.isOpen = false;
+				this.opacity = 0;
+
+				// #ifndef APP-PLUS-NVUE
+				// 非APP 端执行动画
+				this.translatey = 500;
+				setTimeout(() => {
+					this.isShow = false;
+				}, 200);
+				// #endif
+
+				// #ifdef APP-PLUS-NVUE
+				// APP 端执行动画
+				animation.transition(ele, {
+					styles: {
+						transform: 'translate(0,550)',
+						transformOrigin: 'center center'
+					},
+					duration: 250, //ms
+					timingFunction: 'ease',
+					delay: 0 //ms
+				}, () => {
+					this.isShow = false;
+				});
+				// #endif
+
+			},
+			// 阻止冒泡
+			handleClick(event) {
+				event.stopPropagation();
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.fontFamily{
+		font-family: PingFangSCMedium;
+		font-size: 28rpx;
+	}
+	.address-picker-mask {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: 999988;
+	}
+
+	.address-picker-container {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 999999;
+		height: 640rpx;
+		background-color: #FFFFFF;
+	}
+
+	.show-address-picker-mask {
+		transition-property: opacity;
+		transition-duration: 0.2s;
+		transition-timing-function: ease;
+	}
+
+	.hide-address-picker-mask {
+		transition-property: opacity;
+		transition-duration: 0.2s;
+		transition-timing-function: ease;
+	}
+
+	.show-address-picker {
+		/* #ifndef APP-PLUS-NVUE */
+		transition-property: transform;
+		transition-duration: 0.2s;
+		transition-timing-function: ease;
+		/* #endif */
+		/* #ifdef APP-PLUS-NVUE */
+		transform: 'translate(0,550)',
+			/* #endif */
+	}
+
+	.hide-address-picker {
+		/* #ifndef APP-PLUS-NVUE */
+		transition-property: transform;
+		transition-duration: 0.2s;
+		transition-timing-function: ease;
+		/* #endif */
+		/* #ifdef APP-PLUS-NVUE */
+		transform: 'translate(0,550)',
+			/* #endif */
+	}
+
+	// 内容
+	.address-picker-box {
+		width: 750rpx;
+		height: 500rpx;
+		padding: 0 20rpx;
+		/* #ifdef H5 */
+		box-sizing: border-box;
+		/* #endif */
+		background-color: #FFF;
+	}
+
+	.address-picker-item {
+		height: 100rpx;
+	}
+
+	.address-picker-item-text {
+		color: #444;
+		font-size: 32rpx;
+	}
+
+	// 按钮
+	.address-picker-button {
+		height: 100rpx;
+		margin-bottom: 20rpx;
+		box-shadow: 0 1rpx 1rpx #e4e4e4;
+		background-color: #FFFFFF;
+	}
+
+	.address-picker-button-text {
+		padding: 10rpx 25rpx;
+		margin: 0 30rpx;
+	}
+
+	.row {
+		/* #ifndef APP-PLUS-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+
+	}
+
+	.center {
+		/* #ifndef APP-PLUS-NVUE */
+		display: flex;
+		/* #endif */
+		justify-content: center;
+		align-items: center;
+	}
+
+	.between-center {
+		justify-content: space-between;
+		align-items: center;
+	}
+</style>

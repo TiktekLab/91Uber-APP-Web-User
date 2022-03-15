@@ -1,0 +1,38 @@
+.bodyMain{
+	background-color: #f9f9f9;
+
+.navBar {
+	// 自定义导航栏
+	display: flex;
+	align-items: center;
+	padding: 0 30rpx;
+	flex: 1;
+	text {
+		font-size: 32rpx;
+		color: #605966;
+		font-family: inherit;
+	}
+	image{
+		width: 48rpx;
+		height: 48rpx;
+	}
+}
+.tabs{
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: calc(constant(safe-area-inset-top) + 44px);
+	top: calc(env(safe-area-inset-top) + 44px);
+	top: calc(var(--status-bar-height) + 44px);
+	z-index: 100;
+}
+.main{
+	overflow: auto;
+	padding-top: 100rpx;
+	background-color: #f9f9f9;
+	&.isAndroid{
+		// padding-bottom: 170rpx;
+	}
+}
+	
+}

@@ -1,0 +1,33 @@
+.bodyMain {
+	background-color: #f9f9f9;
+	overflow: auto;
+	.contactUs {
+		.contactItem {
+			padding: 30rpx;
+			background-color: #fff;
+			margin-bottom: 30rpx;
+			
+			text {
+				font-size: 30rpx;
+				&.textColor {
+					color: $pink;
+					font-family: PingFangSCBold;
+				}
+			}
+
+			.content {
+				background-color: rgba(255, 54, 162, 0.1);
+				padding: 50rpx 30rpx;
+				margin: 30rpx 0 20rpx;
+			}
+			.copyBtn {
+				margin: 0;
+				height: 60rpx;
+				border-radius: 60rpx;
+				width: 160rpx;
+				border: 2rpx solid $pink;
+				color: $pink;
+			}
+		}
+	}
+}

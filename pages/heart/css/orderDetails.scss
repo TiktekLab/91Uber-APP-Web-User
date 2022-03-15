@@ -1,0 +1,92 @@
+.bodyMain {
+	overflow: auto;
+	background-color: #f9f9f9;
+	.orderDetails {
+		// padding-bottom: 170rpx; // 底部按钮高度
+		padding-top: 30rpx;
+		background-color: #fff;
+		.orderStatus {
+			// 订单状态
+			background-color: rgba(255, 54, 162, 0.1);
+			padding: 20rpx;
+			text {
+				color: $pink;
+				font-size: 30rpx;
+			}
+		}
+		.orderId {
+			// 订单号
+			font-size: 30rpx;
+			color: #000;
+			margin-top: 30rpx;
+		}
+		.pageTitle {
+			// 页面标题
+			font-size: 30rpx;
+			color: #000;
+			font-family: PingFangSCBold;
+			&.pink{
+				color: $pink;
+			}
+		}
+		.itemList {
+			border-bottom: 2rpx solid #eee;
+			padding: 30rpx 0 20rpx;
+			&:last-child {
+				border-bottom: none;
+			}
+			.centent {
+				flex-direction: column;
+				margin-top: 20rpx;
+				text {
+					font-size: 30rpx;
+					color: #000000;
+					margin: 10rpx 0;
+				}
+			}
+		}
+	}
+	.Tips {
+		// 温馨提示
+		padding: 30rpx 30rpx 200rpx;
+		text {
+			font-size: 22rpx;
+			color: #6b7582;
+		}
+	}
+	.footerBtn {
+		// 底部按钮
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: #fff;
+		border-top: 2rpx solid #eee;
+		padding-top: 30rpx;
+		padding-bottom: constant(safe-area-inset-bottom);
+		padding-bottom: env(safe-area-inset-bottom);
+		&.isAndroid{
+			padding-bottom: 50rpx;
+		}
+		.btn {
+			height: 88rpx;
+			width: 200rpx;
+			margin: 0 0 0 45rpx;
+			&:first-child {
+				margin: 0;
+			}
+			&.big {
+				width: 445rpx;
+			}
+			&.plain {
+				background-color: #fff;
+				border: 2rpx solid $pink;
+				color: $pink;
+			}
+			&.disable {
+				background-color: #a4a0a0;
+				color: #fff;
+			}
+		}
+	}
+}

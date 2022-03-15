@@ -1,0 +1,26 @@
+.tabs {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: calc(constant(safe-area-inset-top) + 44px);
+	top: calc(env(safe-area-inset-top) + 44px);
+	top: calc(var(--status-bar-height) + 44px);
+	z-index: 100;
+	/deep/ .u-badge {
+		background-color: $pink;
+		padding: 5rpx 15rpx;
+	}
+}
+.listBox {
+padding-top: 100rpx;
+	padding-bottom: 210rpx;
+	&.isAndroid{
+		padding-bottom: 170rpx;
+	}
+	.uni-swipe {
+		border-bottom: 2rpx solid #eee;
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
+}
