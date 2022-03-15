@@ -1,9 +1,9 @@
 {
-    "name" : "91Uber Australia",
-    "appid" : "__UNI__A406ED6",
-    "description" : "91uber-澳洲最大的华人娱乐平台",
-    "versionName" : "1.1.6",
-    "versionCode" : 116,
+    "name" : "91优步",
+    "appid" : "__UNI__3B23790",
+    "description" : "91优步-澳洲最大的华人娱乐平台",
+    "versionName" : "1.1.7",
+    "versionCode" : 117,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
