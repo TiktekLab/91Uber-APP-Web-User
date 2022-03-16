@@ -1,13 +1,13 @@
 .bodyMain {
-	background:url(@/static/image/login.png) no-repeat;
-	background-size: 100%;
-	background-position: center 100rpx;
+	background:#992F65 url(@/static/image/login.png) no-repeat;
+	background-size: cover;
+	background-position: center center;
 	flex-direction: column;
 	.centent {
 		width: 100%;
 		padding: 0 50rpx;
 		.title {
-			color: $pink;
+			color: #FFFFFF;
 			font-size: 36rpx;
 			font-family: PoppinsBold;
 			&.second {
@@ -22,10 +22,10 @@
 					margin-top: 20rpx;
 				}
 				&::after {
-					border-color: $pink;
+					border-color: #FFFFFF;
 				}
 				.u-form-item--left__content__label {
-					color: $pink;
+					color: #FFFFFF;
 					font-size: 30rpx;
 					font-family: PoppinsBold;
 				}
@@ -35,14 +35,14 @@
 					.u-input__input, .input {
 						font-size: 30rpx;
 						font-family: PingFangSCBold;
-						color: $pink;
+						color: #FFFFFF;
 					}
 					.u-icon__icon {
-						color: $pink !important;
+						color: #FFFFFF !important;
 					}
 				}
 				.u-form-item__message {
-					color: $pink;
+					color: #FFFFFF;
 				}
 			}
 		}
@@ -54,26 +54,27 @@
 					height: 30rpx;
 					flex: 0 0 30rpx;
 					margin-right: 15rpx;
-					border: 2rpx solid $pink;
+					border: 2rpx solid #FFFFFF;
 					border-radius: 30rpx;
 					padding: 0 0 5rpx 10rpx;
 				}
 				.circleInfo {
 					font-size: 24rpx;
-					color: $pink;
+					color: #FFFFFF;
 				}
 			}
 			.Forget {
 				font-size: 24rpx;
-				color: $pink;
+				color: #FFFFFF;
 			}
 		}
 
 		.loginFoot {
 			margin-top: 30rpx;
 			.login {
-				background-color: #b94d9b;
-				color: #fff;
+				background-color: #FFFFFF;
+				color: #992F65;
+				font-family: PingFangSCMedium;
 				height: 80rpx;
 				width: 300rpx;
 				margin-left: 0;
@@ -82,16 +83,21 @@
 				margin: 30rpx 0;
 				padding-bottom: constant(safe-area-inset-bottom);
 				padding-bottom: env(safe-area-inset-bottom);
+				align-items: center;
+				justify-content: center;
 				&.isAndroid {
 					padding-bottom: 30rpx;
+					text {
+						margin-top: 35rpx;						
+					}
 				}
 				text {
-					margin-top: 50rpx;
+					margin-top: 68rpx;
 					font-size: 24rpx;
-					color: $pink;
+					color: #FFFFFF;
 					font-family: PingFangSCMedium;
 					&.active {
-						color: $pink;
+						color: #FFFFFF;
 						font-family: PoppinsBold;
 					}
 				}

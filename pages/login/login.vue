@@ -6,22 +6,22 @@
 			</text>
 			<!-- <text class="title second flex-start">华人走肾交友平台</text> -->
 			<u-form :model="loginData" :error-type="['toast']" ref="loginForm" class="form" label-position="top">
-				<u-form-item label="输入电话" prop="username">
-					<text class="prefix white">+61</text><input class="input" v-model="loginData.username" placeholder-style="color:rgba(255, 255, 255, 0.34)" placeholder="请输入电话号码" type="number" />
+				<u-form-item label="电话" prop="username">
+					<text class="prefix loginWhite">+61</text><input class="input" v-model="loginData.username" placeholder-style="color:rgba(255, 255, 255, 0.34)" placeholder="输入电话号码" type="number" />
 				</u-form-item>
-				<u-form-item label="输入密码" prop="password" class="white">
+				<u-form-item label="密码" prop="password" class="white">
 					<input class="input" v-model="loginData.password" placeholder-style="color:rgba(255, 255, 255, 0.34)" placeholder="输入密码" :type="isShowPwd ? 'text' : 'password'"/>
-					<text class="iconfont eye white" @click="switchType()">{{ isShowPwd ? "&#xe68e;" : "&#xe68d;" }}</text>
+					<text class="iconfont eye loginWhite" @click="switchType()">{{ isShowPwd ? "&#xe68e;" : "&#xe68d;" }}</text>
 				</u-form-item>
 			</u-form>
 			<view class="flex-space-between loginInfo">
 				<view class="flex-start">
 					<view class="footer  flex-start" @click="saveLogin = !saveLogin">
-						<view class="circle flex-center"><u-icon name="checkmark" size="40" v-if="saveLogin" color="#992F65" /></view>
+						<view class="circle flex-center"><u-icon name="checkmark" size="40" v-if="saveLogin" color="#FFFFFF" /></view>
 						<text class="circleInfo">记住密码</text>
 					</view>
 					<view class="footer  flex-start" @click="isAdult = !isAdult" style="margin-left: 50rpx">
-						<view class="circle flex-center"><u-icon name="checkmark" size="40" v-if="isAdult" color="#992F65" /></view>
+						<view class="circle flex-center"><u-icon name="checkmark" size="40" v-if="isAdult" color="#FFFFFF" /></view>
 						<text class="circleInfo">我已满18周岁</text>
 					</view>
 				</view>

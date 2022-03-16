@@ -203,6 +203,9 @@ textarea {
 	&.medium {
 		font-family: PingFangSCMedium;		
 	}
+	&.loginWhite{
+		color: #FFFFFF;
+	}
 }
 
 .eye {
@@ -211,5 +214,8 @@ textarea {
 	padding: 10rpx;
 	&.white {
 		color: $pink;
+	}
+	&.loginWhite{
+		color: #FFFFFF;
 	}
 }

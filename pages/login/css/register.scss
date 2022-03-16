@@ -32,6 +32,9 @@
 					.getCode {
 						font-size: 24rpx;
 						height: 60rpx;
+						&.m-btn{
+							border-radius: 26rpx;
+						}
 					}
 				}
 			}
@@ -40,7 +43,7 @@
 	.bottom {
 		.submit {
 			height: 100rpx;
-			border-radius: 20rpx;
+			border-radius: 40rpx;
 			font-family: PingFangSCMedium;
 		}
 		.login {

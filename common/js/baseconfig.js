@@ -1,10 +1,10 @@
 //开发环境
-const baseUrl = "http://43.129.244.132:8081";
-const socketUrl = "ws://101.33.120.128:3000";
+//const baseUrl = "http://43.129.244.132:8081";
+//const socketUrl = "ws://101.33.120.128:3000";
 
 //正式环境
-//const baseUrl = "https://api.91uber.co";
-//const socketUrl = "wss://socket.91uber.co";
+const baseUrl = "https://api.91uber.co";
+const socketUrl = "wss://socket.91uber.co";
 
 const courtConfig = {
 	baseUrl: baseUrl, //请求接口	
