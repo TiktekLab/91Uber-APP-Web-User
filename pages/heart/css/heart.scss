@@ -1,39 +1,62 @@
 
 // .banner部分
-.bannerBox{
-	position: relative;
-	// 搜索框
-	.navBar {
-		position: absolute;
-		right: 0;
-		left: 0;
-		// top: calc(var(--status-bar-height) + 48rpx);
-		top: constant(safe-area-inset-top);
-		top: env(safe-area-inset-top);
-		top: calc(var(--status-bar-height));
-		z-index: 10;
-		.search{
-			background-color: #fff;
-			height: 96rpx;
-			padding: 0 20rpx;
-			border-radius: 10rpx;
+// .bannerBox{
+// 	position: relative;
+// 	// 搜索框
+// 	.navBar {
+// 		position: absolute;
+// 		right: 0;
+// 		left: 0;
+// 		top: constant(safe-area-inset-top);
+// 		top: env(safe-area-inset-top);
+// 		top: calc(var(--status-bar-height));
+// 		.search{
+// 			background-color: #F6F6F6;
+// 			height: 96rpx;
+// 			padding: 0 20rpx;
+// 			border-radius: 10rpx;
 			
-			.title{
-				font-size: 26rpx;
-				color: $font-color-gray;
-			}
-		}
-	}
-	.swiper{
-		width: 100vw;
-		height: 510rpx;
-		z-index: -1;
-		.banner{
-			height: 510rpx;
-		}
-	}
+// 			.title{
+// 				font-size: 26rpx;
+// 				color: $font-color-gray;
+// 			}
+// 		}
+// 	}
+// 	.swiper{
+// 		width: 100vw;
+// 		height: 510rpx;
+// 		z-index: -1;
+// 		.banner{
+// 			height: 510rpx;
+// 		}
+// 	}
 	
+// }
+
+.searchBox {
+	margin-top: constant(safe-area-inset-top);
+	margin-top: env(safe-area-inset-top);
+	margin-top: calc(var(--status-bar-height));
+	.search{
+		background-color: #F6F6F6;
+		height: 96rpx;
+		padding: 0 20rpx;
+		border-radius: 10rpx;		
+		.iconfont {
+			color: #992F65;
+		}
+		.title{
+			font-size: 26rpx;
+			color: $font-color-gray;
+		}
+	}
 }
+
+//可预定
+.canBook {
+	margin: 20rpx 0;
+}
+
 // 搜索历史
 .searcHistory{
 	margin: 20rpx 0;

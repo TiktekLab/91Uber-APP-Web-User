@@ -1,8 +1,7 @@
 <template>
 	<view class="bodyMain bodyBG hideScroll" style="overflow: auto;">
 		<!-- banner部分 -->
-		<view class="bannerBox">
-			<!-- 搜索框 -->
+		<!-- <view class="bannerBox">
 			<view class="navBar padding">
 				<view class="search flex-start" @click="citiesSearch()">
 					<view class=" searchIconBox flex-center"><text class="iconfont searchIcon">&#xe60a;</text></view>
@@ -14,9 +13,38 @@
 					<u-image height="510" width="750" :src="item.image" mode="aspectFill" @click="bannerClick(item)"/>
 				</swiper-item>
 			</swiper>
+		</view> -->
+		<view class="padding">
+			<view class="searchBox">
+				<view class="search flex-start" @click="citiesSearch()">
+					<view class="searchIconBox flex-center"><text class="iconfont searchIcon">&#xe60a;</text></view>
+					<text class="title">区域搜索</text>
+				</view>			
+			</view>
+			<view class="canBook">
+				<view class="hotService flex-space-between ">
+					<view class="item m-radius" @click="navigateTo('nearby')">
+						<view class="centent flex-space-between">
+							<view>
+								<u-icon class="ico" name="map-fill" color="#992F65" size="36"></u-icon>
+								附近可约
+							</view>
+						</view>
+					</view>
+					<view class="item m-radius" @click="navigateTo('current')">
+						<view class="centent flex-space-between m-radius">
+							<view>
+								<u-icon class="ico" name="clock-fill" color="#992F65" size="36"></u-icon>
+								当前可约
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
 		</view>
+		
 		<!-- 搜索历史 -->
-		<view class="searcHistory padding">
+		<!-- <view class="searcHistory padding">
 			<view class="searchTitle flex-start"><text>{{searcHistoryList.length > 0 ? "搜索历史" : "热门搜索"}}</text></view>
 			<view v-if="searcHistoryList.length > 0">
 				<view class="searchList flex-start " v-for="item in searcHistoryList" :key="item.place_id" @click="jumpToSearchList(item)">
@@ -37,10 +65,10 @@
 			<u-button hover-class="none" plain class="seeBtn m-btn" @click="citiesSearch()">
 				{{ searcHistoryList.length > 0 ? "查看所有记录" : "快去前往搜索吧" }}
 			</u-button>
-		</view>
+		</view> -->
 	
 		<!-- 服务类别 -->
-		<view :class="['serviceBox padding', { isAndroid: isAndroid }]">
+		<!-- <view :class="['serviceBox padding', { isAndroid: isAndroid }]">
 			<text class="serviceTitle flex-start">快捷搜索</text>
 			<view class="hotService flex-space-between ">
 				<view class="item m-radius" @click="navigateTo('nearby')">
@@ -49,9 +77,6 @@
 							<u-icon class="ico" name="map-fill" color="#992F65" size="36"></u-icon>
 							附近可约
 						</view>
-						<!-- <view>							
-							<text class="gray count">{{ canBookNearbyNum }}</text>
-						</view> -->
 					</view>
 				</view>
 				<view class="item m-radius" @click="navigateTo('current')">
@@ -60,9 +85,6 @@
 							<u-icon class="ico" name="clock-fill" color="#992F65" size="36"></u-icon>
 							当前可约
 						</view>
-						<!-- <view>							
-							<text class="gray count">{{ canBookNowNum }}</text>
-						</view> -->
 					</view>
 				</view>
 			</view>
@@ -77,7 +99,7 @@
 					</view>
 				</view>
 			</view>
-		</view>
+		</view> -->
 
 		<!-- 自定义tabBar -->
 		<tabBar ref="tabBar" :active="0" />		
