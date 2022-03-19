@@ -1,38 +1,3 @@
-
-// .banner部分
-// .bannerBox{
-// 	position: relative;
-// 	// 搜索框
-// 	.navBar {
-// 		position: absolute;
-// 		right: 0;
-// 		left: 0;
-// 		top: constant(safe-area-inset-top);
-// 		top: env(safe-area-inset-top);
-// 		top: calc(var(--status-bar-height));
-// 		.search{
-// 			background-color: #F6F6F6;
-// 			height: 96rpx;
-// 			padding: 0 20rpx;
-// 			border-radius: 10rpx;
-			
-// 			.title{
-// 				font-size: 26rpx;
-// 				color: $font-color-gray;
-// 			}
-// 		}
-// 	}
-// 	.swiper{
-// 		width: 100vw;
-// 		height: 510rpx;
-// 		z-index: -1;
-// 		.banner{
-// 			height: 510rpx;
-// 		}
-// 	}
-	
-// }
-
 .searchBox {
 	margin-top: constant(safe-area-inset-top);
 	margin-top: env(safe-area-inset-top);
@@ -55,65 +20,7 @@
 //可预定
 .canBook {
 	margin: 20rpx 0;
-}
-
-// 搜索历史
-.searcHistory{
-	margin: 20rpx 0;
-	.searchTitle{
-		text{
-			font-family: PingFangSCBold;
-			font-size: 30rpx;
-		}
-	}
-	.searchList{
-		padding: 25rpx 0;
-		border-bottom: 2rpx solid #eee;
-		&:last-child{
-			border: none;
-		}
-		.searchIcon{
-			flex: 0 0 36rpx;
-			margin-right: 20rpx;
-			.iconfont{
-				font-size: 36rpx;
-				color: #808080;
-			}
-		}
-		.content{
-			width: 640rpx;
-			overflow: auto;
-			text{
-				width: 640rpx;
-				white-space: nowrap;
-			}
-		}
-	}
-	.seeBtn{
-		font-family: PingFangSCMedium;
-		color: #BBBBBB;
-		height: 80rpx;
-		border: 2rpx solid #eee;
-		&.history{
-			margin-top: 20rpx;
-		}
-	}
-}
-// 服务类别
-.serviceBox{
-	padding-bottom: 210rpx;
-	&.isAndroid{
-		padding-bottom: 170rpx;
-	}
-	.serviceTitle{
-		font-family: PingFangSCMedium;
-		color: #000000;
-		font-weight: 600;
-		font-size: 30rpx;
-		margin: 20rpx 0;
-		white-space: nowrap;
-	}
-	.hotService{
+	.hotService {
 		.item{
 			width: 334rpx;
 			height: 90rpx;
@@ -122,7 +29,7 @@
 				width: 100%;
 				height: 100%;
 			}
-			.centent{
+			.centent {
 				position: absolute;
 				left: 0;
 				top: 0;
@@ -133,13 +40,14 @@
 				height: 88rpx;
 				overflow: hidden;
 				background-color: #F4F4F4;
+				color: #686868;
 				display: flex;
 				justify-content: space-around;
-				.ico{padding-right: 18rpx;}
+				.ico {padding-right: 18rpx;}
 				.title{
 					font-size: 30rpx;
 					font-family: PingFangSCMedium;
-					color: #000;
+					color: #686868;
 				}
 				.gray{
 					color: rgba(0, 0, 0, 0.3);
@@ -152,32 +60,56 @@
 			}
 		}
 	}
-	.serviceItem{
+}
+
+.swiper {
+	margin-top: 25rpx;
+	width: 100vw;
+	height: 510rpx;
+	.banner {
+		height: 510rpx;
+	}	
+}
+
+.serviceContent {	
+	margin-top: 45rpx;
+	padding-bottom: 210rpx;
+	&.isAndroid{
+		padding-bottom: 170rpx;
+	}
+	.serviceTitle {
+		font-family: PingFangSCMedium;
+		color: #686868;
+		font-weight: 800;
+		font-size: 30rpx;
+		white-space: nowrap;
+	}
+	.serviceItem {
 		flex-wrap: wrap;
-		.item{
-			width: 215rpx;
-			height: 215rpx;
-			flex: 0 0 215rpx;
+		.item {
+			width: 320rpx;
+			height: 143rpx;
+			flex: 0 0 320rpx;
 			position: relative;
 			margin-top: 25rpx;
-			.imageBg{
-				width: 100%;
-				height: 100%;
-			}
-			.centent{
+			box-shadow: 10rpx 10rpx 20rpx rgba($color: #000000, $alpha: 0.25);
+			border-radius: 30rpx;			
+			overflow: hidden;
+			
+			.centent {
 				position: absolute;
 				left: 0;
 				top: 0;
 				bottom: 0;
 				right: 0;
-				background-color: rgba(54, 0, 36, 0.3);
-				.title{
+				background-color: #FFFFFF;
+				.title {
 					font-family: PingFangSCMedium;
 					font-size: 36rpx;
-					color: #fff;
+					color: #686868;
+					padding-right: 60rpx;
 				}
 			}
 		}
 	}
 }
-
