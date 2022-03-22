@@ -3,7 +3,7 @@
 		<u-navbar :title="pageTitle" :border-bottom="false"  title-width="400"/>
 		<view class="timePickerBox">
 			<u-tabs :list="indexList" name="key" active-color="#000" bar-width="60" :current="currenTabs" @change="chagneTabs" class="tabs" />
-			<u-checkbox-group class="scrollBox flex" active-color="#ff36a2" @change="checkboxGroupChange">
+			<u-checkbox-group class="scrollBox flex" active-color="#992F65" @change="checkboxGroupChange">
 				<view class="timeItem" v-for="(item, index) in timeList" :key="index">
 					<view class="timeTitle padding flex-start" :id="item.title">
 						<text>{{ item.key }}</text>

@@ -35,14 +35,14 @@
 		<view class="bottom">
 			<view class="footer  flex-start">
 				<view class="circle flex-center" @click="literature = !literature">
-					<u-icon name="checkmark" size="40" v-if="literature" color="#ff36a2" />
+					<u-icon name="checkmark" size="40" v-if="literature" color="#992F65" />
 				</view>
 				<text class="circleInfo" @click="literature = !literature">点击注册按钮即表示您已同意我们的</text>
 				<text class="circleInfo" :href="href" @click="openURL" >91UBER 隐私政策》</text>
 			</view>
 			<view class="footer  flex-start" @click="isAdult = !isAdult">
 				<view class="circle flex-center">
-					<u-icon name="checkmark" size="40" v-if="isAdult" color="#ff36a2" />
+					<u-icon name="checkmark" size="40" v-if="isAdult" color="#992F65" />
 				</view>
 				<text class="circleInfo">我已满18周岁</text>
 			</view>

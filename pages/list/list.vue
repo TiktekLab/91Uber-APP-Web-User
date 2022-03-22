@@ -16,7 +16,7 @@
 			:is-scroll="false"
 			:current="currentTabs"
 			:show-bar="false"
-			active-color="#ff36a2"
+			active-color="#992F65"
 			@change="changeTabs"
 		/>
 

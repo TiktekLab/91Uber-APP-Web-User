@@ -2,7 +2,7 @@
 	<view class="bodyMain bodyBG">
 		<u-navbar title="我的订单" />
 		<view class=" subSection">
-			<u-subsection @change="sectionChange" :list="orderStatus" active-color="#ff36a2" :current="tabCurrent" font-size="26rpx" bg-color="rgba(0,0,0,.1)" />
+			<u-subsection @change="sectionChange" :list="orderStatus" active-color="#992F65" :current="tabCurrent" font-size="26rpx" bg-color="rgba(0,0,0,.1)" />
 		</view>
 		<view class="orderList">
 			<mescroll-body offset="300" ref="mescrollRef" @init="mescrollInit" @down="downCallback" @up="getData" :up="upOption">

@@ -17,7 +17,7 @@
 				</u-form-item>
 			</u-form>
 			<text class="info flex-start">
-				<u-icon name="error-circle" color="#ff36a2" size="26" />
+				<u-icon name="error-circle" color="#992F65" size="26" />
 				定金将在3-7个工作日内退还
 			</text>
 		</view>

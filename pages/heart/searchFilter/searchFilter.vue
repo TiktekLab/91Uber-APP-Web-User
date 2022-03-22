@@ -60,7 +60,7 @@
 						sliderType="/h"
 						:isMoney="true"
 						@change="e => sliderChange('charge', e)"
-						active-color="#FF36A2"
+						active-color="#992F65"
 						background-color="#eee"
 						blockColor="#FFF"
 					/>
@@ -76,7 +76,7 @@
 						:max="80"
 						sliderType="岁"
 						@change="e => sliderChange('age', e)"
-						active-color="#FF36A2"
+						active-color="#992F65"
 						background-color="#eee"
 						blockColor="#FFF"
 					/>
@@ -92,7 +92,7 @@
 						:max="200"
 						sliderType="cm"
 						@change="e => sliderChange('height', e)"
-						active-color="#FF36A2"
+						active-color="#992F65"
 						background-color="#eee"
 						blockColor="#FFF"
 					/>
@@ -108,7 +108,7 @@
 						:max="100"
 						sliderType="kg"
 						@change="e => sliderChange('weight', e)"
-						active-color="#FF36A2"
+						active-color="#992F65"
 						background-color="#eee"
 						blockColor="#FFF"
 					/>
