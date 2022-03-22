@@ -1,107 +1,114 @@
 .bodyMain {
-	background:#992F65 url(@/static/image/login.png) no-repeat;
+	background:url(@/static/image/login.png) no-repeat;
 	background-size: cover;
 	background-position: center center;
 	flex-direction: column;
-	.centent {
+	.mask {
 		width: 100%;
-		padding: 0 50rpx;
-		.title {
-			color: #FFFFFF;
-			font-size: 36rpx;
-			font-family: PoppinsBold;
-			&.second {
-				font-size: 46rpx;
-				margin-bottom: 30rpx;
-			}
-		}
-		.form {
-			/deep/ .u-form-item {
-				padding: 10rpx 0;
-				&:nth-child(2) {
-					margin-top: 20rpx;
-				}
-				&::after {
-					border-color: #FFFFFF;
-				}
-				.u-form-item--left__content__label {
-					color: #FFFFFF;
-					font-size: 30rpx;
-					font-family: PoppinsBold;
-				}
-				.u-form-item--right {
-					border-radius: 10rpx;
-					padding-right: 20rpx;
-					.u-input__input, .input {
-						font-size: 30rpx;
-						font-family: PingFangSCBold;
-						color: #FFFFFF;
-					}
-					.u-icon__icon {
-						color: #FFFFFF !important;
-					}
-				}
-				.u-form-item__message {
-					color: #FFFFFF;
-				}
-			}
-		}
-		.loginInfo {
-			.footer {
-				margin: 30rpx 0;
-				.circle {
-					width: 30rpx;
-					height: 30rpx;
-					flex: 0 0 30rpx;
-					margin-right: 15rpx;
-					border: 2rpx solid #FFFFFF;
-					border-radius: 30rpx;
-					padding: 0 0 5rpx 10rpx;
-				}
-				.circleInfo {
-					font-size: 24rpx;
-					color: #FFFFFF;
-				}
-			}
-			.Forget {
-				font-size: 24rpx;
+		height: 100%;
+		background-color: rgba($color: #992F65, $alpha:0.7);
+		flex-direction: column;		
+		.centent {
+			width: 100%;
+			padding: 0 50rpx;
+			.title {
 				color: #FFFFFF;
-			}
-		}
-
-		.loginFoot {
-			margin-top: 30rpx;
-			.login {
-				background-color: #FFFFFF;
-				color: #992F65;
-				font-family: PingFangSCMedium;
-				height: 80rpx;
-				width: 300rpx;
-				margin-left: 0;
-			}
-			.regBtn {
-				margin: 30rpx 0;
-				padding-bottom: constant(safe-area-inset-bottom);
-				padding-bottom: env(safe-area-inset-bottom);
-				align-items: center;
-				justify-content: center;
-				&.isAndroid {
-					padding-bottom: 30rpx;
-					text {
-						margin-top: 35rpx;						
-					}
+				font-size: 36rpx;
+				font-family: PoppinsBold;
+				&.second {
+					font-size: 46rpx;
+					margin-bottom: 30rpx;
 				}
-				text {
-					margin-top: 68rpx;
-					font-size: 24rpx;
-					color: #FFFFFF;
-					font-family: PingFangSCMedium;
-					&.active {
+			}
+			.form {
+				/deep/ .u-form-item {
+					padding: 10rpx 0;
+					&:nth-child(2) {
+						margin-top: 20rpx;
+					}
+					&::after {
+						border-color: #FFFFFF;
+					}
+					.u-form-item--left__content__label {
 						color: #FFFFFF;
+						font-size: 30rpx;
 						font-family: PoppinsBold;
 					}
+					.u-form-item--right {
+						border-radius: 10rpx;
+						padding-right: 20rpx;
+						.u-input__input, .input {
+							font-size: 30rpx;
+							font-family: PingFangSCBold;
+							color: #FFFFFF;
+						}
+						.u-icon__icon {
+							color: #FFFFFF !important;
+						}
+					}
+					.u-form-item__message {
+						color: #FFFFFF;
+					}
+				}
+			}
+			.loginInfo {
+				.footer {
+					margin: 30rpx 0;
+					.circle {
+						width: 30rpx;
+						height: 30rpx;
+						flex: 0 0 30rpx;
+						margin-right: 15rpx;
+						border: 2rpx solid #FFFFFF;
+						border-radius: 30rpx;
+						padding: 0 0 5rpx 10rpx;
+					}
+					.circleInfo {
+						font-size: 24rpx;
+						color: #FFFFFF;
+					}
+				}
+				.Forget {
+					font-size: 24rpx;
+					color: #FFFFFF;
+				}
+			}
+		
+			.loginFoot {
+				margin-top: 30rpx;
+				.login {
+					background-color: #FFFFFF;
+					color: #992F65;
+					font-family: PingFangSCMedium;
+					height: 80rpx;
+					width: 300rpx;
+					margin-left: 0;
+					margin-right: 46rpx;
+				}
+				.regBtn {
+					margin: 30rpx 0;
+					padding-bottom: constant(safe-area-inset-bottom);
+					padding-bottom: env(safe-area-inset-bottom);
+					align-items: center;
+					justify-content: center;
+					&.isAndroid {
+						padding-bottom: 30rpx;
+						text {
+							margin-top: 35rpx;						
+						}
+					}
+					text {
+						margin-top: 68rpx;
+						font-size: 24rpx;
+						color: #FFFFFF;
+						font-family: PingFangSCMedium;
+						&.active {
+							color: #FFFFFF;
+							font-family: PoppinsBold;
+						}
+					}
 				}
 			}
 		}
-	}
+	}	
 }
