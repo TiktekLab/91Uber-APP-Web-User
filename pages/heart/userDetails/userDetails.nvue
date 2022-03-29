@@ -108,8 +108,7 @@
 				<text class="title text font-PingFangSCBold">收费标准-外卖 Outcall</text>
 				<view class="flex-start moneyBox padding m-radius" v-if="staffInfo.prices">
 					<!-- borderNone 最后一个添加此样式，去除下边框 -->
-					<view
-						:class="['moneyItem flex-space-between flex-row', { borderNone: index + 1 === staffInfo.prices.filter(t => t.type === 1).length }]"
+					<view :class="['moneyItem flex-space-between flex-row', { borderNone: index + 1 === staffInfo.prices.filter(t => t.type === 1).length }]"
 						v-for="(item, index) in staffInfo.prices.filter(t => t.type === 1)" :key="index">
 						<text class="text font-PingFangSCMedium">{{ item.minute }}分钟</text>
 						<text class="text font-PingFangSCMedium">${{ item.price }}.00</text>
@@ -157,9 +156,9 @@
 <script>
 	// #ifdef APP-NVUE
 	const domModule = uni.requireNativePlugin("dom");
+	// src: "url('https://at.alicdn.com/t/font_2559015_s3rse1zkm0o.ttf?t=1629167755534')"
 	domModule.addRule("fontFace", {
 		fontFamily: "uniIcon",
-		// src: "url('https://at.alicdn.com/t/font_2559015_s3rse1zkm0o.ttf?t=1629167755534')"
 		src: "url('../../../static/font/iconfont.ttf')"
 	});
 	domModule.addRule("fontFace", {

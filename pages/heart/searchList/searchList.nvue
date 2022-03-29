@@ -114,9 +114,9 @@
 <script>
 // #ifdef APP-NVUE
 const domModule = uni.requireNativePlugin("dom");
+// src: "url('https://at.alicdn.com/t/font_2559015_t41puy5afi.ttf?t=1626832038594')"
 domModule.addRule("fontFace", {
-	fontFamily: "uniIcon",
-	// src: "url('https://at.alicdn.com/t/font_2559015_t41puy5afi.ttf?t=1626832038594')"
+	fontFamily: "uniIcon",	
 	src: "url('../../../static/font/iconfont.ttf')"
 });
 domModule.addRule("fontFace", {
