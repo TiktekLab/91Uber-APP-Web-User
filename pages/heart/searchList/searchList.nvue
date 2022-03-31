@@ -39,8 +39,8 @@
 				<template v-for="(item, index) in listStaffs">
 					<cell :key="item.id">
 						<view v-if="item.recommend" class="recommend">
-							<text class="title">没有搜索到匹配女生</text>
-							<text class="description">您可能会对以下女生感兴趣~</text>
+							<text class="title">没有搜索到匹配员工</text>
+							<text class="description">您可能会对以下员工感兴趣~</text>
 						</view>
 						<view v-else class="itemList">
 							<view class="picture" @click.stop="navigateTo(item.employeeId)">

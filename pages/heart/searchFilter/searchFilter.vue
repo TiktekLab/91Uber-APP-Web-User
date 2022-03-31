@@ -114,9 +114,9 @@
 					/>
 				</view>
 			</view>
-			<!-- 胸围 -->
+			<!-- 等级 -->
 			<view class="listItem  flex bustBox">
-				<text class="itemTitle ">胸围（多选）</text>
+				<text class="itemTitle ">等级（多选）</text>
 				<view class="itemContent flex m-radius ">
 					<!-- 选中状态添加：active 样式 -->
 					<view :class="['bust', 'all', 'flex-center', { active: bustAll }]" @click="bustAllSelect()"><text>All</text></view>
@@ -193,7 +193,7 @@ export default {
 				pageNum: 1,
 				pageSize: 100
 			},
-			bustList: [], // 胸围列表
+			bustList: [], // 等级列表
 			serviceList: [], // 服务列表
 			labelArray: [], // 标签列表
 			filterParameters: {
@@ -202,7 +202,7 @@ export default {
 				priceType: undefined, //0.堂食，1.外卖，2.全部
 				labelList: undefined, //标签列表
 				serveList: undefined, //服务列表
-				bustIdList: undefined, // 胸围列表
+				bustIdList: undefined, // 等级列表
 				ageStart: undefined,
 				ageEnd: undefined,
 				weightStart: undefined,
@@ -355,7 +355,7 @@ export default {
 			} else {
 				this.filterParameters.serveList = undefined;
 			}
-			// 设置胸围
+			// 设置等级
 			let checkedBusts = this.bustList.filter(t => t.checked);
 			if (checkedBusts.length) {
 				this.filterParameters.bustIdList = checkedBusts.map(item => {
@@ -366,7 +366,7 @@ export default {
 			}
 		},
 		getAttributeData() {
-			//胸围
+			//等级
 			this.$http.get(this.$api.bustList, this.pageInfo).then(res => {
 				this.bustList = res.list.map(item => {
 					return {

@@ -83,7 +83,7 @@
 						<text class="text font-PingFangSCMedium">{{ staffInfo.height }}cm</text>
 					</view>
 					<view class="infoItem flex-row flex-start">
-						<text class="text infoTitle font-PingFangSCMedium">胸围</text>
+						<text class="text infoTitle font-PingFangSCMedium">等级</text>
 						<text class="text font-PingFangSCMedium">{{ staffInfo.bust }}</text>
 					</view>
 					<view class="infoItem flex-row flex-start">

@@ -19,7 +19,7 @@ const api = {
 	evaluationStatistics: '/api-post/evaluation/label/statistics/', //评价标签统计
 	evaluationCount: (merchandiseId) => `/api-post/evaluation/evaluation/count/${merchandiseId}`, //被评价数量
 	evaluationList: (merchandiseId) => `/api-post/evaluation/evaluations/${merchandiseId}`, //被评价列表
-	bustList: '/api-labour/busts', //胸围列表
+	bustList: '/api-labour/busts', //等级列表
 	labelList: '/api-labour/labels', //标签列表
 	serviceTypeList: '/api-labour/serves', //服务类型列表	
 	figuresList: '/api-dancers/open/figures', //身材列表
