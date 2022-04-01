@@ -63,7 +63,7 @@
 					pageNum: page.num,
 					pageSize: page.size
 				};				
-				//除官方推荐外，其他显示的女生要跟客户同一州
+				//除官方推荐外，其他显示的员工要跟客户同一州
 				if(this.currentTabs !== 0 && this.currentLocation && this.currentLocation.province) {
 					params.province = this.currentLocation.province;
 				}

@@ -23,7 +23,7 @@
 				<u-form-item label="Suburb" :border-bottom="false" prop="city">
 					<input class="input" v-model="formData.city" placeholder="请输入Suburb" />
 				</u-form-item>
-				<u-form-item label="邮箱(注册真实邮箱可收到最新女生更新信息)" :border-bottom="false" prop="email">
+				<u-form-item label="邮箱(注册真实邮箱可收到最新员工更新信息)" :border-bottom="false" prop="email">
 					<input class="input" v-model="formData.email" placeholder="请输入邮箱" />
 				</u-form-item>
 				<u-form-item label="密码" :border-bottom="false" prop="pwd">

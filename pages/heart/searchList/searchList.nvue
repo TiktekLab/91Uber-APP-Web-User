@@ -203,8 +203,8 @@ export default {
 			},
 			searchForm: undefined, //搜索来源 
 			searchByDate: false,   //根据日期搜索
-			showRecommend: false,  //是否显示推荐女生列表
-			originalRecommend: false, //是否显示推荐女生列表
+			showRecommend: false,  //是否显示推荐员工列表
+			originalRecommend: false, //是否显示推荐员工列表
 			teampCities: [],
 			searchRecommend: false, //查询推荐数据
 			pageRecommend: 0, //推荐数据是第几页
@@ -519,7 +519,7 @@ export default {
 		},
 		//依赖位置进行查询
 		getInfoByLocation() {
-			//当前State“我有时间”的女生和“等我有空”女生；
+			//当前State“我有时间”的员工和“等我有空”员工；
 			const params = { page: 1, limit: 2000 };
 			if(this.currentLocation && this.currentLocation.province) {
 				params.province = this.currentLocation.province;
