@@ -60,9 +60,10 @@
 					}).then(res => {
 						//console.log("Version:", res);
 						const versionInfo = res.edition;
-						if(versionInfo.isForcedUpdate) {							
+						const downloadUrl = plus.os.name === "Android" ? versionInfo.androidUrl : versionInfo.iosUrl;
+						if(versionInfo.isForcedUpdate && downloadUrl) {							
 							uni.downloadFile({
-							    url: plus.os.name === "Android" ? versionInfo.androidUrl : versionInfo.iosUrl,  
+							    url: downloadUrl,  
 							    success: (downloadResult) => {  
 							        if (downloadResult.statusCode === 200) {  
 							            plus.runtime.install(downloadResult.tempFilePath, {  
