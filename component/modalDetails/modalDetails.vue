@@ -231,12 +231,6 @@
 				text {
 					font-size: 24rpx;
 					line-height: 1.5;
-					// &.dizhi{
-					// 	-webkit-line-clamp: 3;
-					// 	overflow: hidden;
-					// 	display: -webkit-box;
-					// 	-webkit-box-orient: vertical;
-					// }
 				}
 
 				&.outAddress {
