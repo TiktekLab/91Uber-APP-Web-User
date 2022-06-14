@@ -20,8 +20,10 @@
 			@change="changeTabs"
 		/>
 
-		<swiper :class="['main', { isAndroid: isAndroid }]" :style="{ height: pageHeight }" :current="currentTabs" @change="swiperChange">
-			<swiper-item v-for="(tab, index) in tabs" :key="index"><MescrollItem :height="pageHeight" :currentTabs="index" :followIds="followEmployeeIdList" :key="`mesitem${currentTabs}`" @updateFlowList="getFollowList()"/></swiper-item>
+		<swiper class="main" :style="{ height: pageHeight }" :current="currentTabs" @change="swiperChange">
+			<swiper-item v-for="(tab, index) in tabs" :key="index">
+				<MescrollItem :height="pageHeight" :currentTabs="index" :followIds="followEmployeeIdList" :key="`mesitem${currentTabs}`" @updateFlowList="getFollowList()"/>
+			</swiper-item>
 		</swiper>
 		<tabBar :active="1" />
 	</view>
@@ -39,11 +41,7 @@ export default {
 		uni.hideTabBar();
 		const height = uni.getSystemInfoSync().windowHeight;
 		const isAndroid = uni.getSystemInfoSync().platform === 'android';
-		if(isAndroid){
-			this.pageHeight = height - uni.upx2px(370) + "px";
-		} else {
-			this.pageHeight = height - uni.upx2px(435) + "px";
-		}	
+		this.pageHeight = height + "px";
 		//this.getFollowList();
 	},
 	onShow() {	

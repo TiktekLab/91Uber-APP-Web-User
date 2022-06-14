@@ -1,6 +1,6 @@
 {
     "name" : "91优步澳洲",
-    "appid" : "__UNI__3B23790",
+    "appid" : "__UNI__EC86D46",
     "description" : "91优步-澳洲最大的华人娱乐平台",
     "versionName" : "1.2.3",
     "versionCode" : 123,
@@ -172,7 +172,14 @@
     },
     "h5" : {
         "router" : {
-            "mode" : "history"
+            "mode" : "hash",
+            "base" : "./"
+        },
+        "title" : "91Uber App",
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
+            }
         }
     }
 }

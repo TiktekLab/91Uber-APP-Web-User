@@ -31,11 +31,11 @@
 					<view class="swiperItem padding m-radius flex-center">
 						<!-- 最热的 -->
 						<view v-if="item.isMostPopular" class="hot"><u-image width="214rpx" height="200rpx" src="@/static/icon/hotItem.png" mode="aspectFill" /></view>
-						<viwe class="cardInfo">
+						<view class="cardInfo">
 							<u-image class="flex-center logo" width="255rpx" height="220rpx" src="@/static/icon/91UberWhite.png" mode="aspectFill" />
 							<text class="title text flex-center">充值定金</text>
 							<text class="content text flex-center">${{ item.amount }}</text>
-						</viwe>
+						</view>
 					</view>
 				</swiper-item>
 			</swiper>

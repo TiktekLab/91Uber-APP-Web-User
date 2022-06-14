@@ -1,5 +1,5 @@
 <template>
-	<view class="bodyMain bodyBG hideScroll" style="overflow: auto;">
+	<view class="bodyNvue bodyBG hideScroll" style="overflow: auto;">
 		<!-- 搜索框 -->
 		<view class="header">
 			<view class="status_bar"></view>
@@ -18,8 +18,7 @@
 		<!-- 清空筛选条件 -->
 		<view class="resetFilters padding flex-space-between">
 			<view v-if="searchCities.length > 0" class="addressList flex hideScroll">
-				<text class="item flex-center">{{ searchCities[0].fullCityLabel }}</text>
-				<text v-if="searchCities.length > 1" class="more flex-center">& 2 more</text>
+				<text class="item flex-center">{{ getCityDisplay(searchCities) }}</text>
 			</view>
 			<text v-else></text>
 			<!-- 占位符、别删 -->
@@ -244,6 +243,14 @@ export default {
 			uni.switchTab({
 				url: "../heart"
 			});
+		},
+		getCityDisplay(cities){
+			if(cities.length == 0){
+				return "";
+			}else if(cities.length == 1){
+				return cities[0].fullCityLabel;
+			}
+			return cities[0].fullCityLabel + " & " + (cities.length - 1) + " more";
 		},
 		setIntervalValue() {
 			//设置年龄，体重，价格区间值

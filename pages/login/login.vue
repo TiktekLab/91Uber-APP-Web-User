@@ -12,7 +12,7 @@
 							placeholder-style="color:rgba(255, 255, 255, 0.34)" placeholder="输入电话号码" type="number" />
 					</u-form-item>
 					<u-form-item label="密码" prop="password" class="white">
-						<input class="input" v-model="loginData.password"
+						<input class="uni-input-input input" v-model="loginData.password"
 							placeholder-style="color:rgba(255, 255, 255, 0.34)" placeholder="输入密码"
 							:type="isShowPwd ? 'text' : 'password'" />
 						<text class="iconfont eye loginWhite"
@@ -39,7 +39,7 @@
 
 				<view class="loginFoot flex-start">
 					<u-button hover-class="none" @click="login" size="medium" plain class="login  m-btn">登录</u-button>
-					<view :class="['flex-start regBtn', { isAndroid: isAndroid }]" @click="navigateTo('register')">
+					<view class="flex-start regBtn" @click="navigateTo('register')">
 						<text>没有账号，现在</text>
 						<text class="active">注册！</text>
 					</view>

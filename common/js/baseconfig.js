@@ -1,19 +1,20 @@
 //开发环境
-//const baseUrl = "http://43.129.244.132:8081";
-//const socketUrl = "ws://101.33.120.128:3000";
+const baseUrl = "http://47.74.89.168:8081";
+// const baseUrl = "http://47.74.87.19:8081";
+const socketUrl = "ws://172.29.92.27:3000";
 
 //正式环境
-const baseUrl = "https://api.91uber.co";
-const socketUrl = "wss://socket.91uber.co";
+//const baseUrl = "https://api.91uber.co";
+//const socketUrl = "wss://socket.91uber.co";
 
 const courtConfig = {
 	baseUrl: baseUrl, //请求接口	
 	webSocketUrl: socketUrl, //webSocket
 	grantType: 'member_phone_number', //登录grant_type
-	//authorization: 'Basic RGFuY2VyczpEYW5jZXJzQWRtaW4=', //(Review，develop)登录Authorization
-	//authNumber: 'aa8243990fb1123ff5e1336c5eda4', //(Review，develop)发送验证码number
-	authorization: 'Basic RGFuY2VyczI6RGFuY2Vyc0FkbWlu', //(production)登录Authorization
-	authNumber: 'aa8243990fbadawf5e1336c5eda4', //(production)发送验证码number
+	authorization: 'Basic RGFuY2VyczpEYW5jZXJzQWRtaW4=', //(Review，develop)登录Authorization
+	authNumber: 'aa8243990fb1123ff5e1336c5eda4', //(Review，develop)发送验证码number
+	//authorization: 'Basic RGFuY2VyczI6RGFuY2Vyc0FkbWlu', //(production)登录Authorization
+	//authNumber: 'aa8243990fbadawf5e1336c5eda4', //(production)发送验证码number
 	googleMapAPIKey: "AIzaSyCBSqawIlmE8li02WnoR-XY1gkNjFRkWB4", //谷歌地图Key
 	placeAutocompleteAPI: "https://maps.googleapis.com/maps/api/place/autocomplete/json", //谷歌地图地点自动完成API
 	geocodeAPI:"https://maps.googleapis.com/maps/api/geocode/json",//谷歌地图地理位置信息API

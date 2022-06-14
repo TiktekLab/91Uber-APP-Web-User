@@ -1,5 +1,5 @@
 <template>
-	<view class="bodyMain ">
+	<view class="bodyMain">
 		<u-navbar :title="payTitle" />
 		<view class="moneyBg">
 			<view class="flex-center money m-radius">
@@ -10,11 +10,8 @@
 
 		<view class="cardBox" v-if="!isPaySuccess">
 			<view class="shadow">
-				<image class="cardIcon" v-if="cardTypeInfo.cardIcon" :src="cardTypeInfo.cardIcon"></image>
-				<text class="txt" v-if="cardTypeInfo.cardType">{{ cardTypeInfo.cardType }}</text>
-			</view>
-			<view class="shadow">
 				<input v-model="cardForm.cardNumber" class="input" type="number" placeholder="请输入卡号" />
+				<image class="cardIcon" v-if="cardTypeInfo.cardIcon" :src="cardTypeInfo.cardIcon"></image>
 			</view>
 			<view class="flex-space-between three">
 				<view class="shadow item"><input class="input" v-model="cardForm.expMonth" type="number" placeholder="有效期MM" /></view>
@@ -23,8 +20,10 @@
 			</view>
 		</view>
 		<!-- 充值成功 -->
-		<view class="Recharge flex-center" v-else><u-image class="UberIcon" width="255rpx" height="221rpx" src="@/static/icon/91Uber.png" mode="aspectFill" /></view>
-		<view class="Tips padding">
+		<view class="Recharge flex-center" v-else>
+			<u-image class="UberIcon" width="255rpx" height="221rpx" src="@/static/icon/91Uber.png" mode="aspectFill" />
+		</view>
+		<view class="padding">
 			<text>
 				温馨提示：
 				<br />
@@ -39,7 +38,7 @@
 				如有任何疑问，请联系我们的在线客服。
 			</text>
 		</view>
-		<view :class="['PreciseSearch padding absoluteBtn', { isAndroid: isAndroid }]">
+		<view class="PreciseSearch padding absoluteBtn">
 			<u-button hover-class="none" plain class="searchBtn  pink  m-btn" :loading="payloading" :disabled="payloading" @click="confirmPay">{{ isPaySuccess ? "返回我的余额" : "确认支付" }}</u-button>
 		</view>
 		<!--  3D验证  -->

@@ -41,8 +41,6 @@ text {
 }
 // 导航栏高度
 .status_bar {
-	height: constant(safe-area-inset-top);
-	height: env(safe-area-inset-top);
 	height: var(--status-bar-height);
 }
 /* #endif */
@@ -54,6 +52,7 @@ text {
 }
 /* #endif */
 .bodyMain {
+	margin-top: var(–window-bottom);
 	width: 100vw;
 	height: 100vh;
 	position: relative;
@@ -72,6 +71,9 @@ text {
 .padding {
 	padding-left: 30rpx;
 	padding-right: 30rpx;
+	.text {
+		color: brown;
+	}
 }
 .paddingBottom {
 	padding-bottom: 50rpx !important;
