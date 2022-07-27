@@ -27,7 +27,7 @@
 					<input class="input" v-model="formData.email" placeholder="请输入邮箱" />
 				</u-form-item>
 				<u-form-item label="密码" :border-bottom="false" prop="pwd">
-					<input class="input" v-model="formData.pwd" placeholder="请输入密码" type="password" :type="isShowPwd ? 'text' : 'password'"/>
+					<input class="uni-input-input input" v-model="formData.pwd" placeholder="请输入密码" type="password" :type="isShowPwd ? 'text' : 'password'"/>
 					<text slot="right" class="iconfont eye" @click="switchType()">{{ isShowPwd ? "&#xe68e;" : "&#xe68d;" }}</text>
 				</u-form-item>
 			</u-form>
